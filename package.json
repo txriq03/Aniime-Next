@@ -1,5 +1,5 @@
 {
-  "name": "aniime_next",
+  "name": "aniime_next_desktop",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mantine/carousel": "^6.0.4",
+    "@mantine/core": "^6.0.4",
+    "@mantine/hooks": "^6.0.4",
+    "@mui/material": "^5.11.14",
+    "embla-carousel-autoplay": "^7.1.0",
+    "embla-carousel-react": "^7.1.0",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "next": "13.2.4",
