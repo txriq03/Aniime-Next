@@ -39,7 +39,7 @@ const BannerCarousel = ({results}) => {
           <Typography color='white' variant='h6' fontSize='1.1vw' fontFamily='Nunito' sx={{display:'-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 3, overflow: 'hidden'}}>{anime.description}</Typography>
           <Button variant='contained' size='large' 
           onClick={() => {
-            setAnimeWindowUrl(anime.cover); 
+            setAnimeBannerUrl(anime.cover); 
             setAnimeTitle(chooseTitle(anime.title.english, anime.title.romaji)); 
             setNativeTitle(anime.title.native); 
             setAnimeDescription(anime.description);
