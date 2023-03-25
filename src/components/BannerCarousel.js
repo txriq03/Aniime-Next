@@ -25,7 +25,7 @@ const BannerCarousel = ({results}) => {
   return (
     <Carousel mx='auto'  loop plugins={[autoplay.current]} withIndicators height='25vw' draggable align='center' sx={{ position: 'relative'}}>
     {results.slice(0, 7).map(anime => (
-      <Carousel.Slide>
+      <Carousel.Slide key={anime.id}>
         <Box
         className="carousel-cover"
         component='img'
