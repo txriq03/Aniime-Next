@@ -4,15 +4,15 @@ import Axios from 'axios';
 import BannerCarousel from '../components/BannerCarousel';
 import TrendingCarousel from '../components/TrendingCarousel';
 
-const home = ({results}) => {
+const home = ({trendingResults}) => {
   // const [ data, setData ] = useState('');
   // setData(results);
   return (
     <>
     <Grid justifyContent='center'>
-      <BannerCarousel results={results} />
+      <BannerCarousel results={trendingResults} />
       <Box sx={{maxWidth: '95%', margin: 'auto'}}>
-        <TrendingCarousel results={results} />
+        <TrendingCarousel results={trendingResults} />
       </Box>
     </Grid>
     </>
@@ -21,14 +21,16 @@ const home = ({results}) => {
 
 export const getStaticProps = async () => {
   try {
-    const { data } = await Axios.get("https://api.consumet.org/meta/anilist/trending", { params: {
+    const { data: trendingData } = await Axios.get("https://api.consumet.org/meta/anilist/trending", { params: {
       page: 1,
       perPage: 20
     }});
+
     return {
       props: {
-        results: data.results
-      }
+        trendingResults: trendingData.results
+      },
+      revalidate: 60,
     }
   } catch (err) {
     throw new Error(err.message);
