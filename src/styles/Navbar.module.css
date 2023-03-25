@@ -1,0 +1,159 @@
+.home {
+    width: 80px;
+    height: 80px;
+    margin-top: 100px;
+    background-color: #1E1E1E;
+    cursor: pointer;
+    box-shadow: 10px;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+.home:hover {
+    border-radius: 15%;
+    background-color: #d81e5b;
+}
+.home .homeIcon {
+    color: #d81e5b;
+    transition: all 0.3s;
+}
+.home:hover .homeIcon{
+    color: white;
+}
+.home-active {
+    width: 80px;
+    height: 80px;
+    margin-top: 100px;
+    background-color: #d81e5b;
+    cursor: pointer;
+    box-shadow: 10px;
+    border-radius: 15%;
+    transition: all 0.3s;
+}
+
+.whatshot {
+    width: 80px;
+    height: 80px;
+    margin-top: 30px;
+    cursor: pointer;
+    box-shadow: 10px;
+    border-radius: 50%;
+    transition: all 0.3s;
+    background-color: #1E1E1E;
+    transition: all 0.3s;
+}
+.whatshot:hover {
+    border-radius: 15%;
+    background-color: orange;
+}
+.whatshot .whatshotIcon {
+    color: orange;
+}
+.whatshot:hover .whatshotIcon {
+    color: white;
+}
+.whatshot-active {
+    width: 80px;
+    height: 80px;
+    margin-top: 30px;
+    background-color: orange;
+    cursor: pointer;
+    box-shadow: 10px;
+    border-radius: 15%;
+    transition: all 0.3s;
+}
+
+.update {
+    width: 80px;
+    height: 80px;
+    margin-top: 30px;
+    cursor: pointer;
+    box-shadow: 10px;
+    border-radius: 50%;
+    transition: all 0.3s;
+    background-color: #1E1E1E;
+    transition: all 0.3s;
+}
+.update:hover {
+    border-radius: 15%;
+    background-color: #2ec4b6;
+}
+.update .updateIcon {
+    color: #2ec4b6;
+}
+.update:hover .updateIcon {
+    color: white;
+}
+.update-active {
+    width: 80px;
+    height: 80px;
+    margin-top: 30px;
+    background-color: #2ec4b6;
+    cursor: pointer;
+    box-shadow: 10px;
+    border-radius: 15%;
+    transition: all 0.3s;
+}
+
+.calendar {
+    width: 80px;
+    height: 80px;
+    margin-top: 30px;
+    cursor: pointer;
+    box-shadow: 10px;
+    border-radius: 50%;
+    transition: all 0.3s;
+    background-color: #1E1E1E;
+    transition: all 0.3s;
+}
+.calendar:hover {
+    border-radius: 15%;
+    background-color: #0cf574;
+}
+.calendar .calendarIcon {
+    color: #0cf574;
+}
+.calendar:hover .calendarIcon {
+    color: white;
+}
+.calendar-active {
+    width: 80px;
+    height: 80px;
+    margin-top: 30px;
+    background-color: #0cf574;
+    cursor: pointer;
+    box-shadow: 10px;
+    border-radius: 15%;
+    transition: all 0.3s;
+}
+
+.categories {
+    width: 80px;
+    height: 80px;
+    margin-top: 30px;
+    cursor: pointer;
+    box-shadow: 10px;
+    border-radius: 50%;
+    transition: all 0.3s;
+    background-color: #1E1E1E;
+    transition: all 0.3s;
+}
+.categories:hover {
+    border-radius: 15%;
+    background-color: #9649cb;
+}
+.categories .categoriesIcon {
+    color: #9649cb;
+}
+.categories:hover .categoriesIcon {
+    color: white;
+}
+.categories-active {
+    width: 80px;
+    height: 80px;
+    margin-top: 30px;
+    background-color: #9649cb;
+    cursor: pointer;
+    box-shadow: 10px;
+    border-radius: 15%;
+    transition: all 0.3s;
+}
