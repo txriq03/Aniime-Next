@@ -1,0 +1,46 @@
+/*Styles for trending carousel*/
+.item {
+    min-height: 40rem;
+    min-width: 30rem;
+    padding: 40px;
+}
+.anime-card {
+    width: 100%;
+    height: 100%;
+}
+.inner-carousel {
+    display: flex;
+}
+.carousel {
+    cursor: grab;
+    overflow: hidden;
+}
+
+.BackdropGrid::-webkit-scrollbar {
+    display: none;
+}
+
+/*Styles for each card in trending carousel*/
+.cardBox{
+    background: linear-gradient(to top, #1E1E1E 20%, rgba(0, 0, 0, 0.667) 30%, rgba(0,0,0,0) 50%);
+}
+.cardImage {
+    background: linear-gradient(to top, rgba(0,0,0,0)  black);
+    border-radius: 2;
+    box-shadow: 3;
+    height: 280px;
+    width: 176px;
+    object-fit: cover;
+    cursor: pointer;
+}
+.card-title {
+    -webkit-line-clamp: 2;
+    display: block;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+    left: 5%;
+    z-index: 1;
+    text-overflow: ellipsis;
+    line-height: 1;
+}

@@ -1,7 +1,8 @@
-import { Typography, Grid } from '@mui/material';
+import { Typography, Grid, Container, Box } from '@mui/material';
 import { useState } from 'react';
 import Axios from 'axios';
-import BannerCarousel from '../components/BannerCarousel'
+import BannerCarousel from '../components/BannerCarousel';
+import TrendingCarousel from '../components/TrendingCarousel';
 
 const home = ({results}) => {
   // const [ data, setData ] = useState('');
@@ -10,6 +11,9 @@ const home = ({results}) => {
     <>
     <Grid justifyContent='center'>
       <BannerCarousel results={results} />
+      <Box sx={{maxWidth: '95%', margin: 'auto'}}>
+        <TrendingCarousel results={results} />
+      </Box>
     </Grid>
     </>
   )
