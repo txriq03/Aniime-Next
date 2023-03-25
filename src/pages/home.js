@@ -25,10 +25,12 @@ export const getStaticProps = async () => {
       page: 1,
       perPage: 20
     }});
+    const { data: recentlyUpdatedData } = await Axios.get("https://api.consumet.org/meta/anilist/recent-episodes")
 
     return {
       props: {
-        trendingResults: trendingData.results
+        trendingResults: trendingData.results,
+        recentlyUpdatedResults: recentlyUpdatedData.results
       },
       revalidate: 60,
     }
