@@ -19,13 +19,13 @@
 .home:hover .homeIcon{
     color: white;
 }
-.home-active {
+.homeActive {
     width: 80px;
     height: 80px;
     margin-top: 100px;
     background-color: #d81e5b;
     cursor: pointer;
-    box-shadow: 10px;
+    box-shadow: 0px;
     border-radius: 15%;
     transition: all 0.3s;
 }
@@ -51,7 +51,7 @@
 .whatshot:hover .whatshotIcon {
     color: white;
 }
-.whatshot-active {
+.whatshotActive {
     width: 80px;
     height: 80px;
     margin-top: 30px;
@@ -83,7 +83,7 @@
 .update:hover .updateIcon {
     color: white;
 }
-.update-active {
+.updateActive {
     width: 80px;
     height: 80px;
     margin-top: 30px;
@@ -115,7 +115,7 @@
 .calendar:hover .calendarIcon {
     color: white;
 }
-.calendar-active {
+.calendarActive {
     width: 80px;
     height: 80px;
     margin-top: 30px;
@@ -147,7 +147,7 @@
 .categories:hover .categoriesIcon {
     color: white;
 }
-.categories-active {
+.categoriesActive {
     width: 80px;
     height: 80px;
     margin-top: 30px;
