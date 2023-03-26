@@ -21,18 +21,15 @@ const home = ({trendingResults}) => {
 
 export const getStaticProps = async () => {
   try {
-    const { data: trendingData } = await Axios.get("https://api.consumet.org/meta/anilist/trending", { params: {
+    const { data } = await Axios.get("https://api.consumet.org/meta/anilist/trending", { params: {
       page: 1,
       perPage: 20
     }});
-    const { data: recentlyUpdatedData } = await Axios.get("https://api.consumet.org/meta/anilist/recent-episodes")
 
     return {
       props: {
-        trendingResults: trendingData.results,
-        recentlyUpdatedResults: recentlyUpdatedData.results
-      },
-      revalidate: 60,
+        trendingResults: data.results
+      }
     }
   } catch (err) {
     throw new Error(err.message);

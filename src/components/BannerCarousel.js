@@ -45,8 +45,8 @@ const BannerCarousel = ({results}) => {
             setAnimeDescription(anime.description);
             setAnimeId(anime.id); 
             // setIsBackdropOpen(true)
-          }} style={{height: '2.7vw', width: '10vw', fontSize: '1.2vw', whiteSpace: 'nowrap'}} sx={{borderRadius: 2, mt: 2}}><PlayArrowRounded style={{fontSize: '1.8rem'}} sx={{ml:-1}}/> Play Now</Button>
-          <Button variant='contained' color='secondary' size='large' style={{height: '2.7vw', width: '11vw', fontSize: '1.1vw', whiteSpace: 'nowrap'}} sx={{borderRadius: 2, mt: 2, ml: 2}}><Info style={{fontSize: '1.2rem'}} sx={{mr: 0.5}}/> View Details</Button>
+          }} style={{height: '2.7vw', width: '10vw', fontSize: '1.2vw', whiteSpace: 'nowrap'}} sx={{borderRadius: 2, mt: 2}}><PlayArrowRounded style={{fontSize: '1.8vw'}} sx={{ml:-1}}/> Play Now</Button>
+          <Button variant='contained' color='secondary' size='large' style={{height: '2.7vw', width: '11vw', fontSize: '1.1vw', whiteSpace: 'nowrap'}} sx={{borderRadius: 2, mt: 2, ml: 2}}><Info style={{fontSize: '1.2vw'}} sx={{mr: 0.5}}/> View Details</Button>
         </Box>
       </Carousel.Slide>
     ))}
