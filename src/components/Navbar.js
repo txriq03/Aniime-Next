@@ -58,7 +58,7 @@ const Navbar = () => {
         </Box>
       </Drawer>
 
-      <AppBar position="static" sx={{backgroundColor: 'black'}}>
+      <AppBar position="static" enableColorOnDark sx={{bgcolor: 'black'}} elevation={1} >
         <Toolbar>
           <IconButton sx={{ml: 5}} onClick={() => setIsDrawerOpen(true)}>
             <Menu fontSize='large' />

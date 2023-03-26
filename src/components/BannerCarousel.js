@@ -30,7 +30,7 @@ const BannerCarousel = ({results}) => {
         className="carousel-cover"
         component='img'
         src={anime.cover}
-        sx={{objectFit: 'cover', height: '100%', width: '100%', borderRadius: 3, filter: 'brightness(50%) blur(5px)'}}
+        sx={{objectFit: 'cover', height: '100%', width: '100%', borderRadius: 3, filter: 'brightness(35%)'}}
         />
         <Box width='35%' sx={{display: 'block', position: 'absolute', bottom: '60%', left: '10%'}}>
           <Typography color='white' className='cover-title' variant='h2' fontSize='3vw' fontFamily='Nunito' fontWeight='bold' sx={{display:'-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 2, overflow: 'hidden'}} >{chooseTitle(anime.title.english, anime.title.romaji)}</Typography>

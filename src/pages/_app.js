@@ -3,6 +3,13 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Layout from '../components/Layout';
 
 export const theme = createTheme({
+  overrides: {
+    muiAppBar: {
+      colorDefault: {
+        backgroundColor: '#000000'
+      }
+    }
+  },
   palette: {
     mode: 'dark',
     primary: {
