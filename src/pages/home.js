@@ -19,7 +19,7 @@ const home = ({trendingResults}) => {
   )
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   try {
     const { data } = await Axios.get("https://api.consumet.org/meta/anilist/trending", { params: {
       page: 1,
