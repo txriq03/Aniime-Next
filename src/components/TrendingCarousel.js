@@ -4,7 +4,7 @@ import { Theaters} from '@mui/icons-material';
 import { Carousel } from '@mantine/carousel';
 import styles from '../styles/TrendingCarousel.module.css'
 
-const TrendingCarousel = ({results}) => {
+const TrendingCarousel = ({results, isModalOpen, setIsModalOpen}) => {
     const [ animeBannerUrl, setAnimeBannerUrl ] = useState('');
     const [ animeTitle, setAnimeTitle ] = useState('');
     const [ nativeTitle, setNativeTitle ] = useState('');
@@ -44,7 +44,7 @@ const TrendingCarousel = ({results}) => {
                     setNativeTitle(anime.title.native); 
                     setAnimeDescription(anime.description);
                     setAnimeId(anime.id); 
-                    // setIsBackdropOpen(true)
+                    setIsModalOpen(true)
                     }}>
                     <div style={{position: 'relative'}}>
                         <CardMedia className={styles.cardImage} component='img' image={anime.image} sx={{ borderRadius: 2, boxShadow: 5,  height: '280px', width: '176px', objectFit: 'cover', cursor: 'pointer',}}/>

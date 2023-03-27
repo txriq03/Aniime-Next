@@ -4,13 +4,13 @@ import { useState, useRef } from 'react';
 import { Carousel } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 
-const BannerCarousel = ({results}) => {
+const BannerCarousel = ({results, setAnimeId, animeId }) => {
   console.log(results)
   const [ animeBannerUrl, setAnimeBannerUrl ] = useState('');
   const [ animeTitle, setAnimeTitle ] = useState('');
   const [ nativeTitle, setNativeTitle ] = useState('');
   const [ animeDescription, setAnimeDescription ] = useState('');
-  const [ animeId, setAnimeId ] = useState('');
+  // const [ animeId, setAnimeId ] = useState('');
 
   const autoplay = useRef(Autoplay({ delay: 5000 }));
 
@@ -36,7 +36,7 @@ const BannerCarousel = ({results}) => {
           <Typography color='white' className='cover-title' variant='h2' fontSize='3vw' fontFamily='Nunito' fontWeight='bold' sx={{display:'-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 2, overflow: 'hidden'}} >{chooseTitle(anime.title.english, anime.title.romaji)}</Typography>
         </Box>
         <Box width='35%' sx={{display: 'block', position: 'absolute', top: '40%', left: '10%'}}>
-          <Typography color='white' variant='h6' fontSize='1.1vw' fontFamily='Nunito' sx={{display:'-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 3, overflow: 'hidden'}}>{anime.description}</Typography>
+          <Typography color='white' variant='h6' fontSize='1.1vw' fontFamily='Nunito' sx={{display:'-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 4, overflow: 'hidden', lineHeight: 1.2}}>{anime.description}</Typography>
           <Button variant='contained' size='large' 
           onClick={() => {
             setAnimeBannerUrl(anime.cover); 
