@@ -1,9 +1,10 @@
 import { Typography, Grid, Container, Box, ClickAwayListener } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import BannerCarousel from '../components/BannerCarousel';
 import TrendingCarousel from '../components/TrendingCarousel';
 import AnimeModal from '../components/Modal';
+import Head from 'next/head';
 
 const home = ({trendingResults}) => {
   const [ animeId, setAnimeId ] = useState(null);
@@ -11,6 +12,9 @@ const home = ({trendingResults}) => {
 
   return (
     <>
+    <Head>
+      <title>Aniime - Home</title>
+    </Head>
     <Grid justifyContent='center'>
       <BannerCarousel results={trendingResults} setIsModalOpen={setIsModalOpen} />
       <Box sx={{maxWidth: '95%', margin: 'auto'}}>
@@ -32,7 +36,7 @@ export const getServerSideProps = async () => {
     return {
       props: {
         trendingResults: data.results
-      },
+      }
     }
   } catch (err) {
     throw new Error(err.message);

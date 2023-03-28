@@ -71,7 +71,7 @@ const Navbar = () => {
               cursor: 'pointer',
               py: '12px',
               px: '10px',
-              width: '170px',
+              width: '150px',
               flexGrow: 0
             }}
           />
