@@ -4,12 +4,12 @@ import { Theaters} from '@mui/icons-material';
 import { Carousel } from '@mantine/carousel';
 import styles from '../styles/TrendingCarousel.module.css'
 
-const TrendingCarousel = ({results, isModalOpen, setIsModalOpen}) => {
+const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAnimeId}) => {
     const [ animeBannerUrl, setAnimeBannerUrl ] = useState('');
     const [ animeTitle, setAnimeTitle ] = useState('');
     const [ nativeTitle, setNativeTitle ] = useState('');
     const [ animeDescription, setAnimeDescription ] = useState('');
-    const [ animeId, setAnimeId ] = useState('');
+    // const [ animeId, setAnimeId ] = useState('');
 
     //Choose Romaji title if English title doesn't exist
     const chooseTitle= (english, romaji) => {

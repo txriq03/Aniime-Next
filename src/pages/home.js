@@ -6,15 +6,15 @@ import TrendingCarousel from '../components/TrendingCarousel';
 import AnimeModal from '../components/Modal';
 
 const home = ({trendingResults}) => {
-  const [ animeId, setAnimeId ] = useState(136430);
+  const [ animeId, setAnimeId ] = useState(null);
   const [ isModalOpen, setIsModalOpen ] = useState(false);
 
   return (
     <>
     <Grid justifyContent='center'>
-      <BannerCarousel results={trendingResults} animeId={animeId} setAnimeId={setAnimeId} setIsModalOpen={setIsModalOpen} />
+      <BannerCarousel results={trendingResults} setIsModalOpen={setIsModalOpen} />
       <Box sx={{maxWidth: '95%', margin: 'auto'}}>
-        <TrendingCarousel results={trendingResults} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+        <TrendingCarousel results={trendingResults} animeId={animeId} setAnimeId={setAnimeId} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </Box>
     </Grid>
     <AnimeModal animeId={animeId} setAnimeId={setAnimeId} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
