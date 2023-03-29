@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Grid, Typography, Box, Button, Container, Skeleton, Modal } from '@mui/material';
+import { Grid, Typography, Box, Button, Container, Skeleton, Modal, Pagination } from '@mui/material';
 import { Info, PlayCircle } from '@mui/icons-material';
 import axios from 'axios';
 import styles from '../styles/Modal.module.css';
@@ -100,7 +100,7 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                 <Button variant='text' align='left' mt={1} sx={{width: '100px'}}>Show More</Button>
                 <Typography variant='h6' color='whitesmoke' fontFamily='Youtube Sans' align='left' mt={1} >Episodes</Typography>
                 
-                {episodeList ?
+                {episodeList &&
                 <Box>
                     {episodeList.map(episode => {
                         return (
@@ -123,16 +123,19 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                             </Box>
                         )
                     })} 
-                </Box> : <Typography>No Episodes</Typography>}
+                </Box> }
 
-                <Box align='center' bgcolor='#bd284d' my={2} height={2} width={750}/>
-                <Typography variant='h4' fontFamily='Nunito' align='left' ml={2} color='whitesmoke'>About</Typography>
+                {/* <Box align='center' bgcolor='#bd284d' my={2} height={2} width={750}/> */}
+                <Box display='flex' justifyContent='center' mt={1}>
+                    <Pagination count={10} boundaryCount={10} color='primary' />
+                </Box>
+                <Typography variant='h4' fontFamily='Nunito' align='left' ml={2} mt={1} color='whitesmoke'>About</Typography>
                 <Box display='flex'>
                     <Typography fontFamily='Nunito' color='grey' mx={2} mt={1}>Genres: </Typography>
-                    {genres ? 
+                    {genres &&
                     <Box display='flex' ml={-1} mt={1}>
                         {genres.map(entry => { return (<Typography color='whitesmoke' fontFamily='Nunito' mr={1} key={entry}> {entry}, </Typography>)})}
-                    </Box> : <Typography>No genres</Typography>}
+                    </Box> }
                 </Box>
                 <Box display ='flex'>
                     <Typography fontFamily='Nunito' color='grey' ml={2} >Average Episode: </Typography>
