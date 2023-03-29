@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { Grid, Typography, Box, Button, Container, Skeleton, Modal, Pagination } from '@mui/material';
-import { Info, PlayCircle } from '@mui/icons-material';
+import { Info, PlayCircle, BookmarkAddRounded, BookmarkAddedRounded } from '@mui/icons-material';
 import axios from 'axios';
 import styles from '../styles/Modal.module.css';
 
@@ -16,6 +16,10 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
     const [ englishTitle, setEnglishTitle ] = useState('');
     const [ nativeTitle, setNativeTitle ] = useState('');
     const [ description, setDescription ] = useState('');
+    const [ displayEpisodes, setDisplayEpisodes ] = useState([]);
+    const [ totalPages, setTotalPages ] = useState(0);
+    const [ pageNumber, setPageNumber ] = useState(1);
+    const [ pagesVisited, setPagesVisited ] = useState(pageNumber * 10);
 
     const getEpisodeList = async () => {
         console.log(animeId)
@@ -32,7 +36,8 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                 }
 
                 if (data.episodes != '') {
-                    setEpisodeList(data.episodes.slice(0, 10));
+                    setEpisodeList(data.episodes);
+                    setDisplayEpisodes(data.episodes.slice(0, 10))
                     setFirstEpisodeId(data.episodes[0].id)
                 }
                 setAverageEpisode(data.duration)
@@ -84,14 +89,33 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
     //Function to display number of episodes each page
     const episodesEachPage = (arr, eachPage) => {
         const res = [];
-        for (let i = 0; i < arr.length; i += eachPage) {
-            const page = arr.slice(i, i + eachPage);
-            res.push(page);
+        var i = 0;
+        const chunk = [];
+        if (arr != null) {
+            for (let i = 0; i < arr.length; i += eachPage) {
+                const page = arr.slice(i, i + eachPage);
+                res.push(page);
+            }
         }
-        console.log(res)
-        return res
+        res.forEach((n) => {
+            chunk[i] = n;
+            i++            
+        })
+        setTotalPages(res.length)
+        return chunk
     }
+    useEffect(() => {
+        episodesEachPage(episodeList, 10)
+        // setPagesVisited(pageNumber * 10)
+    }, [episodeList])
 
+    const handlePageChange = (event, value) => {
+        setPageNumber(value);
+        console.log('Page ' + value)
+        setPagesVisited(pageNumber * 10)
+        setDisplayEpisodes(episodeList.slice(pagesVisited, pagesVisited + 10))
+        console.log(pagesVisited)
+    }
   return (
     <Modal align='center' open={isModalOpen} onClose={handleClose} style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
         <Grid className={styles.ModalGrid} justifyContent='center' sx={{ outline: 0, width: { lg: '800px', md: '600px', sm: '600px', xs: '400px'}, height: '98vh', bgcolor: '#0E0E0E', borderRadius: 1, boxShadow: 10, overflowY: 'auto', overflowX: 'hidden'}} >
@@ -114,7 +138,7 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                 
                 {episodeList &&
                 <Box>
-                    {episodeList.map(episode => {
+                    {displayEpisodes.map(episode => {
                         return (
                             <Box display='flex' flexDirection='row' key={episode.id} sx={{cursor: 'pointer'}}>
                                 <Box
@@ -137,9 +161,8 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                     })} 
                 </Box> }
 
-                {/* <Box align='center' bgcolor='#bd284d' my={2} height={2} width={750}/> */}
                 <Box display='flex' justifyContent='center' mt={1}>
-                    <Pagination count={10} boundaryCount={10} color='primary' />
+                    <Pagination count={totalPages} defaultPage={1} siblingCount={3} boundaryCount={2} page={pageNumber} onChange={handlePageChange} color='primary' />
                 </Box>
                 <Typography variant='h4' fontFamily='Nunito' align='left' ml={2} mt={1} color='whitesmoke'>About</Typography>
                 <Box display='flex'>

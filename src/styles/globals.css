@@ -10,7 +10,9 @@ body {
   padding: 0;
 }
 
-
+::-webkit-scrollbar-thumb {
+  background: rgb(255, 66, 66);
+}
 
 
 /* :root {
