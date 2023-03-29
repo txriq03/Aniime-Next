@@ -16,10 +16,12 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
     const [ englishTitle, setEnglishTitle ] = useState('');
     const [ nativeTitle, setNativeTitle ] = useState('');
     const [ description, setDescription ] = useState('');
-    const [ displayEpisodes, setDisplayEpisodes ] = useState([]);
+
+    //Page variables
     const [ totalPages, setTotalPages ] = useState(0);
     const [ pageNumber, setPageNumber ] = useState(1);
-    const [ pagesVisited, setPagesVisited ] = useState(pageNumber * 10);
+    const pagesVisited = pageNumber * 10;
+    const displayEpisodes = episodeList?.slice(pagesVisited - 10, pagesVisited);
 
     const getEpisodeList = async () => {
         console.log(animeId)
@@ -37,7 +39,6 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
 
                 if (data.episodes != '') {
                     setEpisodeList(data.episodes);
-                    setDisplayEpisodes(data.episodes.slice(0, 10))
                     setFirstEpisodeId(data.episodes[0].id)
                 }
                 setAverageEpisode(data.duration)
@@ -112,9 +113,6 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
     const handlePageChange = (event, value) => {
         setPageNumber(value);
         console.log('Page ' + value)
-        setPagesVisited(pageNumber * 10)
-        setDisplayEpisodes(episodeList.slice(pagesVisited, pagesVisited + 10))
-        console.log(pagesVisited)
     }
   return (
     <Modal align='center' open={isModalOpen} onClose={handleClose} style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}} >

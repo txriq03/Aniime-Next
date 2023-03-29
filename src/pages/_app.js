@@ -1,4 +1,4 @@
-import '@/styles/globals.css'
+import '../styles/globals.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Layout from '../components/Layout';
 

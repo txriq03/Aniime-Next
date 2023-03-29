@@ -5,7 +5,6 @@ import BannerCarousel from '../components/BannerCarousel';
 import TrendingCarousel from '../components/TrendingCarousel';
 import AnimeModal from '../components/Modal';
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
 
 const home = ({trendingResults}) => {
   const [ animeId, setAnimeId ] = useState(null);
@@ -16,7 +15,7 @@ const home = ({trendingResults}) => {
     <Head>
       <title>Aniime - Home</title>
     </Head>
-    <Grid className={styles.home} justifyContent='center'>
+    <Grid justifyContent='center'>
       <BannerCarousel results={trendingResults} setIsModalOpen={setIsModalOpen} />
       <Box sx={{maxWidth: '95%', margin: 'auto'}}>
         <TrendingCarousel results={trendingResults} animeId={animeId} setAnimeId={setAnimeId} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
