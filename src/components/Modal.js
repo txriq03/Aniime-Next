@@ -23,16 +23,20 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
             try {
                 const { data } = await axios.get(`https://api.consumet.org/meta/anilist/info/${animeId}`);
                 console.log(data);
+                console.log(animeId);
 
                 try {
                     setTrailerUrl(`https://www.youtube.com/watch?v=${data.trailer.id}`)
                 } catch(err) {
-                    console.log(err)
+                    console.log("Trailer error: " + err)
                 }
-                setEpisodeList(data.episodes.slice(0, 10));
+
+                if (data.episodes != '') {
+                    setEpisodeList(data.episodes.slice(0, 10));
+                    setFirstEpisodeId(data.episodes[0].id)
+                }
                 setAverageEpisode(data.duration)
                 setGenres(data.genres)
-                setFirstEpisodeId(data.episodes[0].id)
                 setCover(data.cover)
                 setRating(data.rating)
                 setEnglishTitle(data.title.english)
@@ -65,14 +69,14 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
     const handleClose = () => {
         console.log("Closing...")
         setIsModalOpen(false);
-        // setEpisodeList(null);
-        // setAverageEpisode(null);
-        // setGenres(null);
-        // setFirstEpisodeId(null);
-        // setCover(null);
-        // setRating(null);
-        // setEnglishTitle(null);
-        // setNativeTitle(null);
+        setEpisodeList(null);
+        setAverageEpisode(null);
+        setGenres(null);
+        setFirstEpisodeId(null);
+        setCover(null);
+        setRating(null);
+        setEnglishTitle(null);
+        setNativeTitle(null);
     }
 
 
@@ -85,7 +89,7 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
             }
             <Box ml={4} mr={4} mt={1} display='flex' flexDirection='column'>
                 <Typography variant='h3' align='left' fontFamily='Youtube Sans' color='white' sx={{display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 1, overflow: 'hidden'}}>{englishTitle}</Typography>
-                <Typography variant='h8' align='left' fontFamily='Nunito' color='white' mt={1}>({nativeTitle})</Typography>
+                <Typography variant='h8' align='left' fontFamily='Nunito' color='white' mt={1}>{nativeTitle}</Typography>
                 <Box display='flex' mt={1.5}>
                     <Button variant='contained' size='large'><PlayCircle sx={{ mr:0.5 }}/> Watch Episode 1</Button>
                     <Button variant='outlined' size='large' sx={{ ml:1 }}><Info sx={{ mr:0.5 }}/> Watch Trailer</Button>
@@ -95,34 +99,40 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                 }}>{description}</Typography>
                 <Button variant='text' align='left' mt={1} sx={{width: '100px'}}>Show More</Button>
                 <Typography variant='h6' color='whitesmoke' fontFamily='Youtube Sans' align='left' mt={1} >Episodes</Typography>
-                {episodeList.map(episode => {
-                    return (
-                        <Box display='flex' flexDirection='row' key={episode.id} sx={{cursor: 'pointer'}}>
-                            <Box
-                            display='flex'
-                            flexDirection='column'
-                            component="img"
-                            src={"http://aniimeproxy.herokuapp.com/" + episode.image}
-                            height='15vw'
-                            maxHeight='100px'
-                            my={2}
-                            
-                            borderRadius={1}
-                            /> 
-                            <Box>
-                                <Typography my={2} mx={2} color='whitesmoke' align='left' noWrap textOverflow='hidden'>{episode.number}. {episode.title}</Typography>
-                                <Typography fontSize={14} my={-1} mx={2} color='whitesmoke' align='left' fontFamily='Nunito' style={{display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 3, overflow: 'hidden'}}>{episode.description}</Typography>
+                
+                {episodeList ?
+                <Box>
+                    {episodeList.map(episode => {
+                        return (
+                            <Box display='flex' flexDirection='row' key={episode.id} sx={{cursor: 'pointer'}}>
+                                <Box
+                                display='flex'
+                                flexDirection='column'
+                                component="img"
+                                src={"http://aniimeproxy.herokuapp.com/" + episode.image}
+                                height='15vw'
+                                maxHeight='100px'
+                                my={2}
+                                
+                                borderRadius={1}
+                                /> 
+                                <Box>
+                                    <Typography my={2} mx={2} color='whitesmoke' align='left' noWrap textOverflow='hidden'>{episode.number}. {episode.title}</Typography>
+                                    <Typography fontSize={14} my={-1} mx={2} color='whitesmoke' align='left' fontFamily='Nunito' style={{display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 3, overflow: 'hidden'}}>{episode.description}</Typography>
+                                </Box>
                             </Box>
-                        </Box>
-                    )
-                })}
+                        )
+                    })} 
+                </Box> : <Typography>No Episodes</Typography>}
+
                 <Box align='center' bgcolor='#bd284d' my={2} height={2} width={750}/>
                 <Typography variant='h4' fontFamily='Nunito' align='left' ml={2} color='whitesmoke'>About</Typography>
                 <Box display='flex'>
                     <Typography fontFamily='Nunito' color='grey' mx={2} mt={1}>Genres: </Typography>
+                    {genres ? 
                     <Box display='flex' ml={-1} mt={1}>
-                        {genres.map(entry => { return (<Typography color='whitesmoke' fontFamily='Nunito' mr={1}>{entry},</Typography>)})}
-                    </Box>
+                        {genres.map(entry => { return (<Typography color='whitesmoke' fontFamily='Nunito' mr={1} key={entry}> {entry}, </Typography>)})}
+                    </Box> : <Typography>No genres</Typography>}
                 </Box>
                 <Box display ='flex'>
                     <Typography fontFamily='Nunito' color='grey' ml={2} >Average Episode: </Typography>
