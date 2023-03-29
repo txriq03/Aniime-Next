@@ -43,6 +43,8 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                 setNativeTitle(data.title.native)
                 setDescription(data.description)
 
+                
+
             } catch (err) {
                 throw new Error(err.message);
             }
@@ -79,6 +81,16 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
         setNativeTitle(null);
     }
 
+    //Function to display number of episodes each page
+    const episodesEachPage = (arr, eachPage) => {
+        const res = [];
+        for (let i = 0; i < arr.length; i += eachPage) {
+            const page = arr.slice(i, i + eachPage);
+            res.push(page);
+        }
+        console.log(res)
+        return res
+    }
 
   return (
     <Modal align='center' open={isModalOpen} onClose={handleClose} style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
