@@ -3,6 +3,7 @@ import { Grid, Typography, Box, Button, Container, Skeleton, Modal, Pagination }
 import { Info, PlayCircle, BookmarkAddRounded, BookmarkAddedRounded } from '@mui/icons-material';
 import axios from 'axios';
 import styles from '../styles/Modal.module.css';
+import { useRouter } from 'next/router';
 
 const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
     const [ episodeList, setEpisodeList ] = useState([]);
@@ -22,6 +23,8 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
     const [ pageNumber, setPageNumber ] = useState(1);
     const pagesVisited = pageNumber * 10;
     const displayEpisodes = episodeList?.slice(pagesVisited - 10, pagesVisited);
+
+    const router = useRouter();
 
     const getEpisodeList = async () => {
         console.log(animeId)
@@ -85,6 +88,7 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
         setRating(null);
         setEnglishTitle(null);
         setNativeTitle(null);
+        setPageNumber(1);
     }
 
     //Function to display number of episodes each page
@@ -138,7 +142,7 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                 <Box>
                     {displayEpisodes.map(episode => {
                         return (
-                            <Box display='flex' flexDirection='row' key={episode.id} sx={{cursor: 'pointer'}}>
+                            <Box display='flex' onClick={() => {router.push('/watch/' + episode.id)}} flexDirection='row' key={episode.id} sx={{cursor: 'pointer'}}>
                                 <Box
                                 display='flex'
                                 flexDirection='column'
