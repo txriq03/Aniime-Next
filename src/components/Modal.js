@@ -29,7 +29,7 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
         console.log(animeId)
         if (animeId != null) {
             try {
-                const { data } = await axios.get(`https://api.consumet.org/meta/anilist/info/${animeId}`);
+                const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_LINK}/meta/anilist/info/${animeId}`);
                 console.log(data);
                 console.log(animeId);
 
@@ -146,7 +146,7 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                                 display='flex'
                                 flexDirection='column'
                                 component="img"
-                                src={'https://aniimeproxy.herokuapp.com/' + episode.image}
+                                src={process.env.NEXT_PUBLIC_PROXY + episode.image}
                                 height='15vw'
                                 maxHeight='100px'
                                 my={2}
