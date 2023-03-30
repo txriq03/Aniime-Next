@@ -26,13 +26,7 @@ const Home = ({trendingResults}) => {
   )
 };
 
-export const getServerSideProps = async ({req}) => {
-  const { context } = req.netlifyFunctionParams || {};
-  if (context) {
-    console.log("Setting callbackWaitsForEmptyEventLoop: false");
-    context.callbackWaitsForEmptyEventLoop = false;
-  }
-
+export const getServerSideProps = async () => {
   try {
     const { data } = await Axios.get(`${process.env.NEXT_PUBLIC_API_LINK}/meta/anilist/trending`, { params: {
       page: 1,
