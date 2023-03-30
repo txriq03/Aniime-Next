@@ -6,7 +6,7 @@ import TrendingCarousel from '../components/TrendingCarousel';
 import AnimeModal from '../components/Modal';
 import Head from 'next/head';
 
-const home = ({trendingResults}) => {
+const Home = ({trendingResults}) => {
   const [ animeId, setAnimeId ] = useState(null);
   const [ isModalOpen, setIsModalOpen ] = useState(false);
 
@@ -42,4 +42,4 @@ export const getServerSideProps = async () => {
     throw new Error(err.message);
   }}
 
-export default home
+export default Home
