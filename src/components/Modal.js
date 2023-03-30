@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
 import { Grid, Typography, Box, Button, Container, Skeleton, Modal, Pagination } from '@mui/material';
-import { Info, PlayCircle, BookmarkAddRounded, BookmarkAddedRounded } from '@mui/icons-material';
 import axios from 'axios';
 import styles from '../styles/Modal.module.css';
 import { useRouter } from 'next/router';
@@ -129,8 +128,8 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                 <Typography variant='h3' align='left' fontFamily='Youtube Sans' color='white' sx={{display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 1, overflow: 'hidden'}}>{englishTitle}</Typography>
                 <Typography variant='h8' align='left' fontFamily='Nunito' color='white' mt={1}>{nativeTitle}</Typography>
                 <Box display='flex' mt={1.5}>
-                    <Button variant='contained' size='large'><PlayCircle sx={{ mr:0.5 }}/> Watch Episode 1</Button>
-                    <Button variant='outlined' size='large' sx={{ ml:1 }}><Info sx={{ mr:0.5 }}/> Watch Trailer</Button>
+                    <Button variant='contained' size='large'> Watch Episode 1</Button>
+                    <Button variant='outlined' size='large' sx={{ ml:1 }}> Watch Trailer</Button>
                 </Box>
                 <Typography variant='h10' align='left' fontFamily='Nunito' color='lightgrey' mt={1.5} sx={{
                     display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 6, overflow: 'hidden'

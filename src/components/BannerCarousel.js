@@ -1,5 +1,4 @@
 import { Typography, Box, Button } from '@mui/material';
-import { Info, PlayArrowRounded, Theaters} from '@mui/icons-material';
 import { useState, useRef } from 'react';
 import { Carousel } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
@@ -45,8 +44,8 @@ const BannerCarousel = ({results, setAnimeId, animeId }) => {
             setAnimeDescription(anime.description);
             setAnimeId(anime.id); 
             // setIsBackdropOpen(true)
-          }} style={{height: '2.7vw', width: '10vw', fontSize: '1.2vw', whiteSpace: 'nowrap'}} sx={{borderRadius: { md: 1.5, sm: 1, xs: 1}, mt: 2}}><PlayArrowRounded style={{fontSize: '1.8vw'}} sx={{ml:-1}}/> Play Now</Button>
-          <Button variant='contained' color='secondary' size='large' style={{height: '2.7vw', width: '11vw', fontSize: '1.1vw', whiteSpace: 'nowrap'}} sx={{borderRadius: 1.5, mt: 2, ml: 2}}><Info style={{fontSize: '1.2vw'}} sx={{mr: 0.5}}/> View Details</Button>
+          }} style={{height: '2.7vw', width: '10vw', fontSize: '1.2vw', whiteSpace: 'nowrap'}} sx={{borderRadius: { md: 1.5, sm: 1, xs: 1}, mt: 2}}> Play Now</Button>
+          <Button variant='contained' color='secondary' size='large' style={{height: '2.7vw', width: '11vw', fontSize: '1.1vw', whiteSpace: 'nowrap'}} sx={{borderRadius: 1.5, mt: 2, ml: 2}}> View Details</Button>
         </Box>
       </Carousel.Slide>
     ))}
