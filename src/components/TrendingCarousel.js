@@ -1,6 +1,7 @@
 import { Box, Typography, Card, CardMedia, Backdrop, Paper } from '@mui/material';
 import {  useState, } from 'react';
 import { Carousel } from '@mantine/carousel';
+import { Theaters} from '@mui/icons-material';
 import styles from '../styles/TrendingCarousel.module.css'
 
 const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAnimeId}) => {
@@ -50,10 +51,13 @@ const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAni
                         <Box className={styles.cardBox} position='absolute'  height='100%' width='100%' sx={{bottom: 0}}/>
                         <Paper sx={{display: 'flex', justifyContent: 'center' ,position: 'absolute', bottom: 70, right: 5, width: '3.5rem', height: '1.3rem', bgcolor: '#BD284D'}}>
                             
-                            {anime.totalEpisodes ? 
-                            <Typography fontFamily='Nunito' fontSize='0.8rem' align='center'> 
-                            {anime.totalEpisodes} 
-                            </Typography> :
+                            {anime.totalEpisodes ?
+                            <>
+                                <Theaters style={{fontSize: '1rem', marginTop: 1}}/> 
+                                <Typography fontFamily='Nunito' fontSize='0.8rem' align='center'> 
+                                {anime.totalEpisodes} 
+                                </Typography> 
+                            </> :
                             <Typography fontFamily='Nunito' fontSize='0.8rem' align='center'>
                             ???
                             </Typography>}

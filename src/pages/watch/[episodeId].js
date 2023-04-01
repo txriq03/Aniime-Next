@@ -20,7 +20,7 @@ export const getServerSideProps = async (context) => {
     const { episodeId } = context.query;
 
     try {
-        const { data } = await Axios.get(`${process.env.NEXT_PUBLIC_API_LINK}/meta/anilist/watch/${episodeId}`)
+        const { data } = await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/meta/anilist/watch/${episodeId}`)
         console.log(data)
         return {
             props: {
