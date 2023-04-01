@@ -1,8 +1,10 @@
 import { Box, Typography, Card, CardMedia, Backdrop, Paper } from '@mui/material';
-import {  useState, } from 'react';
+import {  useState, useEffect } from 'react';
 import { Carousel } from '@mantine/carousel';
 import { Theaters} from '@mui/icons-material';
 import styles from '../styles/TrendingCarousel.module.css'
+import { useQuery } from 'react-query';
+import { api } from '../utils';
 
 const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAnimeId}) => {
     const [ animeBannerUrl, setAnimeBannerUrl ] = useState('');
@@ -11,7 +13,13 @@ const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAni
     const [ animeDescription, setAnimeDescription ] = useState('');
     // const [ animeId, setAnimeId ] = useState('');
 
-    //Choose Romaji title if English title doesn't exist
+
+    const { data, status } = useQuery(['TrendingData'], () => api.getTrending(1, 20));
+    console.log(data)
+
+
+
+    //Choose Romaji title if English title doesn't exist    
     const chooseTitle= (english, romaji) => {
         if (english != null) {
         return english

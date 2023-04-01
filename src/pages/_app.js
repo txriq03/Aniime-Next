@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Layout from '../components/Layout';
+import { QueryClientProvider, QueryClient } from 'react-query';
 
 export const theme = createTheme({
   overrides: {
@@ -36,12 +37,16 @@ export const theme = createTheme({
   }
 });
 
+const queryClient = new QueryClient();
+
 export default function App({ Component, pageProps }) {
   return (
-  <ThemeProvider theme={theme}>
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
-  </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
+    </QueryClientProvider>
   )
 }
