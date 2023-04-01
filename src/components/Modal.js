@@ -29,7 +29,7 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
         console.log(animeId)
         if (animeId != null) {
             try {
-                const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_LINK}/meta/anilist/info/${animeId}`);
+                const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/meta/anilist/info/${animeId}`);
                 console.log(data);
                 console.log(animeId);
 
@@ -140,13 +140,14 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                 {episodeList &&
                 <Box>
                     {displayEpisodes.map(episode => {
+                        console.log(episode.image)
                         return (
                             <Box display='flex' onClick={() => {router.push('/watch/' + episode.id)}} flexDirection='row' key={episode.id} sx={{cursor: 'pointer'}}>
                                 <Box
                                 display='flex'
                                 flexDirection='column'
                                 component="img"
-                                src={process.env.NEXT_PUBLIC_PROXY + episode.image}
+                                src={process.env.NEXT_PUBLIC_PROXY + '/' + episode.image}
                                 height='15vw'
                                 maxHeight='100px'
                                 my={2}
