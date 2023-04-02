@@ -3,8 +3,6 @@ import {  useState, useEffect } from 'react';
 import { Carousel } from '@mantine/carousel';
 import { Theaters} from '@mui/icons-material';
 import styles from '../styles/TrendingCarousel.module.css'
-import { useQuery } from 'react-query';
-import { api } from '../utils';
 
 const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAnimeId}) => {
     const [ animeBannerUrl, setAnimeBannerUrl ] = useState('');
@@ -12,14 +10,7 @@ const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAni
     const [ nativeTitle, setNativeTitle ] = useState('');
     const [ animeDescription, setAnimeDescription ] = useState('');
     // const [ animeId, setAnimeId ] = useState('');
-
-
-    const { data, status } = useQuery(['TrendingData'], () => api.getTrending(1, 20));
-    console.log(data)
-
-
-
-    //Choose Romaji title if English title doesn't exist    
+    console.log(results)    //Choose Romaji title if English title doesn't exist    
     const chooseTitle= (english, romaji) => {
         if (english != null) {
         return english
@@ -43,7 +34,7 @@ const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAni
     <>
     <Typography variant='h3' fontFamily='Nunito' fontWeight='bold' color='white' sx={{mt: 2, fontSize: { lg: '2rem', md: '1.8rem', sm: '1.5rem', xs: '1.5rem'}}}>Trending</Typography>
     <Carousel mx='auto'  draggable align='start' slideSize={1} slidesToScroll={3} dragFree >
-        {results.map(anime => (
+        {results?.map(anime => (
             <Carousel.Slide key={anime.id}>
                 <Box className={styles.items} >
                     <Card sx={{mr: 2, mt: 1, mb: 5, cursor: 'pointer'}} onClick={() => {
