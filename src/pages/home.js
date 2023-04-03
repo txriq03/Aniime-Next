@@ -11,6 +11,7 @@ const Home = () => {
   const [ animeId, setAnimeId ] = useState(null);
   const [ isModalOpen, setIsModalOpen ] = useState(false);
   const { data, status } = useQuery(['TrendingData'], () => api.getTrending(1, 10));
+  
 
   console.log(data)
 
