@@ -111,13 +111,23 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
     }
   return (
     <Modal align='center' open={isModalOpen} onClose={handleClose} style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
-        <Grid className={styles.ModalGrid} justifyContent='center' sx={{ outline: 0, width: { lg: '800px', md: '600px', sm: '600px', xs: '400px'}, height: '98vh', bgcolor: '#0E0E0E', borderRadius: 1, boxShadow: 10, overflowY: 'auto', overflowX: 'hidden'}} >
+        <Grid className={styles.ModalGrid} justifyContent='center' sx={{
+            outline: 0, 
+            width: { lg: '800px', md: '600px', sm: '600px', xs: '400px'}, 
+            height: '98vh', 
+            bgcolor: '#0E0E0E', 
+            borderRadius: 1, 
+            boxShadow: 10, 
+            overflowY: 'auto', 
+            overflowX: 'hidden'}} >
             {cover ? 
                 <Box component='img' src={cover} sx={{objectFit: 'cover', width: '100%', height: { md: '33%', sm: '22%', xs: '22%'}}}/> : 
                 <Skeleton variant='rectangular' width='100%' height='33%'/>
             }
             <Box ml={4} mr={4} mt={1} display='flex' flexDirection='column'>
-                <Typography variant='h3' align='left' fontFamily='Youtube Sans' color='white' sx={{display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 1, overflow: 'hidden'}}>{englishTitle}</Typography>
+                <Typography variant='h3' align='left' fontFamily='Youtube Sans' color='white' sx={{
+                        display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 1, overflow: 'hidden'
+                    }}>{englishTitle}</Typography>
                 <Typography variant='h8' align='left' fontFamily='Nunito' color='white' mt={1}>{nativeTitle}</Typography>
                 <Box display='flex' mt={1.5}>
                     <Button variant='contained' size='large'><PlayCircle sx={{mr: 0.5}}/> Watch Episode 1</Button>
@@ -147,7 +157,9 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                                 /> 
                                 <Box>
                                     <Typography my={2} mx={2} color='whitesmoke' align='left' noWrap textOverflow='hidden'>{episode.number}. {episode.title}</Typography>
-                                    <Typography fontSize={14} my={-1} mx={2} color='whitesmoke' align='left' fontFamily='Nunito' style={{display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 3, overflow: 'hidden'}}>{episode.description}</Typography>
+                                    <Typography fontSize={14} my={-1} mx={2} color='whitesmoke' align='left' fontFamily='Nunito' style={{
+                                            display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 3, overflow: 'hidden'
+                                        }}>{episode.description}</Typography>
                                 </Box>
                             </Box>
                         )

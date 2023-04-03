@@ -32,7 +32,9 @@ const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAni
     
   return (
     <>
-    <Typography variant='h3' fontFamily='Nunito' fontWeight='bold' color='white' sx={{mt: 2, fontSize: { lg: '2rem', md: '1.8rem', sm: '1.5rem', xs: '1.5rem'}}}>Trending</Typography>
+    <Typography variant='h3' fontFamily='Nunito' fontWeight='bold' color='white' sx={{
+            mt: 2, fontSize: { lg: '2rem', md: '1.8rem', sm: '1.5rem', xs: '1.5rem'
+        }}}>Trending</Typography>
     <Carousel mx='auto'  draggable align='start' slideSize={1} slidesToScroll={3} dragFree >
         {results?.map(anime => (
             <Carousel.Slide key={anime.id}>
@@ -46,7 +48,9 @@ const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAni
                     setIsModalOpen(true)
                     }}>
                     <div style={{position: 'relative'}}>
-                        <CardMedia className={styles.cardImage} component='img' image={anime.image} sx={{ borderRadius: 2, boxShadow: 5,  height: '280px', width: '176px', objectFit: 'cover', cursor: 'pointer',}}/>
+                        <CardMedia className={styles.cardImage} component='img' image={anime.image} sx={{ 
+                                borderRadius: 2, boxShadow: 5,  height: '280px', width: '176px', objectFit: 'cover', cursor: 'pointer'
+                            }}/>
                         <Box className={styles.cardBox} position='absolute'  height='100%' width='100%' sx={{bottom: 0}}/>
                         <Paper sx={{display: 'flex', justifyContent: 'center' ,position: 'absolute', bottom: 70, right: 5, width: '3.5rem', height: '1.3rem', bgcolor: '#BD284D'}}>
                             
