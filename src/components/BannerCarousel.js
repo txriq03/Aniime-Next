@@ -5,7 +5,6 @@ import { Info, PlayArrowRounded, Theaters } from '@mui/icons-material';
 import Autoplay from 'embla-carousel-autoplay';
 
 const BannerCarousel = ({results, setAnimeId, animeId }) => {
-  console.log(results)
   const [ animeBannerUrl, setAnimeBannerUrl ] = useState('');
   const [ animeTitle, setAnimeTitle ] = useState('');
   const [ nativeTitle, setNativeTitle ] = useState('');
@@ -24,7 +23,7 @@ const BannerCarousel = ({results, setAnimeId, animeId }) => {
 
   return (
     <Carousel mx='auto'  loop plugins={[autoplay.current]} withIndicators height='25vw' draggable align='center' sx={{ position: 'relative'}}>
-    {results.slice(0, 7).map(anime => (
+    {results?.slice(0, 7).map(anime => (
       <Carousel.Slide key={anime.id}>
         <Box
         className="carousel-cover"
