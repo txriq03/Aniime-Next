@@ -127,7 +127,7 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                     display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 6, overflow: 'hidden'
                 }}>{description}</Typography>
                 <Button variant='text' align='left' mt={1} sx={{width: '100px'}}>Show More</Button>
-                <Typography variant='h6' color='whitesmoke' fontFamily='Youtube Sans' align='left' mt={1} >Episodes</Typography>
+                <Typography variant='h6' color='whitesmoke' fontFamily='Youtube Sans' align='left' mt={1}>Episodes</Typography>
                 
                 {episodeList &&
                 <Box>

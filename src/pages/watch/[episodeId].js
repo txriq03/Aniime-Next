@@ -17,19 +17,29 @@ const Video = ({videoUrl}) => {
     
 
 export const getServerSideProps = async (context) => {
-    const { episodeId } = context.query;
+    const { params } = context
+    const { episodeId } = params
 
-    try {
-        const { data } = await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/meta/anilist/watch/${episodeId}`)
-        console.log(data)
-        return {
-            props: {
-                videoUrl: data.sources[3].url
-            }
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/meta/anilist/watch/${episodeId}`)
+    const data = await response.json()
+
+    return {
+        props: {
+            videoUrl: data.sources[3].url
         }
-    } catch(err) {
-        throw new Error(err.message);
     }
+
+    // try {
+    //     const { data } = await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/meta/anilist/watch/${episodeId}`)
+    //     console.log(data)
+    //     return {
+    //         props: {
+    //             videoUrl: data.sources[3].url
+    //         }
+    //     }
+    // } catch(err) {
+    //     throw new Error(err.message);
+    // }
 }
 
   export default Video
