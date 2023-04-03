@@ -3,16 +3,16 @@ import 'vidstack/define/media-player.js';
 import { MediaOutlet, MediaPlayer } from '@vidstack/react';
 import 'vidstack/styles/defaults.css';
 import Axios from 'axios';
-import router from 'next/router';
+import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import { api } from '../../utils';
 
 
 const Video = () => {
+    const router = useRouter();
     const { episodeId } = router.query
     const { data, status } = useQuery(['StreamingLink'], () => api.getSource(episodeId));
-    console.log(data.sources[3].url)
-    const videoUrl = data.sources[3].url
+    const videoUrl = data?.sources[3].url
 
     return (
         <Grid justifyContent='center'>
