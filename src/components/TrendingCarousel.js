@@ -14,9 +14,6 @@ const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAni
     // const [ animeId, setAnimeId ] = useState('');
 
 
-    const { data, status } = useQuery(['TrendingData'], () => api.getTrending(1, 20));
-    console.log(data)
-
 
 
     //Choose Romaji title if English title doesn't exist    

@@ -9,7 +9,7 @@ import Axios from 'axios';
 const Video = ({videoUrl}) => {
     return (
         <Grid justifyContent='center'>
-            <MediaPlayer controls autoplay style={{width: '90vw', align: 'center'}} src={"https://aniimeproxy.herokuapp.com/" + videoUrl}> <MediaOutlet/> </MediaPlayer>
+            <MediaPlayer controls autoplay style={{width: '90vw', align: 'center'}} src={process.env.NEXT_PUBLIC_PROXY + '/' + videoUrl}> <MediaOutlet/> </MediaPlayer>
         </Grid>
 
         )

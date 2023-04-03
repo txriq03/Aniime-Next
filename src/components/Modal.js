@@ -93,24 +93,16 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
     //Function to display number of episodes each page
     const episodesEachPage = (arr, eachPage) => {
         const res = [];
-        var i = 0;
-        const chunk = [];
         if (arr != null) {
             for (let i = 0; i < arr.length; i += eachPage) {
                 const page = arr.slice(i, i + eachPage);
                 res.push(page);
             }
         }
-        res.forEach((n) => {
-            chunk[i] = n;
-            i++            
-        })
         setTotalPages(res.length)
-        return chunk
     }
     useEffect(() => {
         episodesEachPage(episodeList, 10)
-        // setPagesVisited(pageNumber * 10)
     }, [episodeList])
 
     const handlePageChange = (event, value) => {
@@ -129,7 +121,7 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                 <Typography variant='h8' align='left' fontFamily='Nunito' color='white' mt={1}>{nativeTitle}</Typography>
                 <Box display='flex' mt={1.5}>
                     <Button variant='contained' size='large'><PlayCircle sx={{mr: 0.5}}/> Watch Episode 1</Button>
-                    <Button variant='outlined' size='large' sx={{ ml:1 }}><Info sx={{mr: 0.5}}/>Watch Trailer</Button>
+                    <Button variant='outlined' size='large' sx={{ ml:1 }} onClick={() => window.open(trailerUrl, '_blank')}><Info sx={{mr: 0.5}}/>Watch Trailer</Button>
                 </Box>
                 <Typography variant='h10' align='left' fontFamily='Nunito' color='lightgrey' mt={1.5} sx={{
                     display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 6, overflow: 'hidden'
