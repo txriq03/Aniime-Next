@@ -40,10 +40,6 @@ const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAni
             <Carousel.Slide key={anime.id}>
                 <Box className={styles.items} >
                     <Card sx={{mr: 2, mt: 1, mb: 5, cursor: 'pointer'}} onClick={() => {
-                    setAnimeBannerUrl(anime.cover); 
-                    setAnimeTitle(chooseTitle(anime.title.english, anime.title.romaji)); 
-                    setNativeTitle(anime.title.native); 
-                    setAnimeDescription(anime.description);
                     setAnimeId(anime.id); 
                     setIsModalOpen(true)
                     }}>

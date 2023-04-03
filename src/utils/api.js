@@ -51,3 +51,22 @@ export const getSource = async (episodeId, server) => {
 
   return data;
 };
+
+export const getInfo = async (id) => {
+  let { data } = await api.get(`/meta/anilist/info/${id}`)
+
+  if (!data)
+  return {
+    error: "No data"
+  };
+  return data
+}
+
+export const searchQuery = async (query) => {
+  let { data } = await api.get(`/meta/anilist/${query}?page=1`)
+
+  if (!data) return {
+    error: "No data"
+  };
+  return data 
+}

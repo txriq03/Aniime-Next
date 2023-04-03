@@ -74,9 +74,10 @@ const Navbar = () => {
               width: '150px',
               flexGrow: 0
             }}
+            onClick={() => router.push('/home')}
           />
           <Typography noWrap>by txriq03</Typography>
-          <OutlinedInput sx={{ m: 'auto', width: '30%', bgcolor: '#0e0e0e', textAlign: 'center', fontFamily: 'Nunito', borderRadius: 2}} size='small' onChange={(e) => setQuery(e.target.value)} startAdornment={<IconButton sx={{ml: -0.5}} > <Search/> </IconButton>} placeholder='Search...' />
+          <OutlinedInput sx={{ m: 'auto', width: '30%', bgcolor: '#0e0e0e', textAlign: 'center', fontFamily: 'Nunito', borderRadius: 2}} size='small' onChange={(e) => setQuery(e.target.value)} startAdornment={<IconButton sx={{ml: -0.5}} onClick={() => router.push(`/search/${query}`)}> <Search/> </IconButton>} placeholder='Search...' />
           <IconButton sx={{mr: 1}} href='https://discord.com/invite/qTPfvMxzNH'>
             <FaDiscord size='1.2em' color='#5562EA'/>
           </IconButton>
