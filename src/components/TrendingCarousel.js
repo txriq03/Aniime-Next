@@ -1,35 +1,11 @@
 import { Box, Typography, Card, CardMedia, Backdrop, Paper } from '@mui/material';
+import { utils } from '../utils';
 import {  useState, useEffect } from 'react';
 import { Carousel } from '@mantine/carousel';
 import { Theaters} from '@mui/icons-material';
 import styles from '../styles/TrendingCarousel.module.css'
 
 const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAnimeId}) => {
-    const [ animeBannerUrl, setAnimeBannerUrl ] = useState('');
-    const [ animeTitle, setAnimeTitle ] = useState('');
-    const [ nativeTitle, setNativeTitle ] = useState('');
-    const [ animeDescription, setAnimeDescription ] = useState('');
-
-    //Choose Romaji title if English title doesn't exist    
-    const chooseTitle= (english, romaji) => {
-        if (english != null) {
-        return english
-        } else {
-        return romaji
-        }
-    }
-
-
-    const changeRatingColor = (rating) => {
-        if (rating < 40) {
-            return 'red'
-        } else if (rating >= 70) {
-          return 'lightgreen'
-        } else {
-            return 'orange'
-        }
-      }
-    
   return (
     <>
     <Typography variant='h3' fontFamily='Nunito' fontWeight='bold' color='white' sx={{
@@ -67,7 +43,7 @@ const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAni
                             WebkitBoxOrient: 'vertical', 
                             overflow: 'hidden',
                             lineHeight: 1.1,   
-                            WebkitLineClamp: 2}}>{chooseTitle(anime.title.english, anime.title.romaji)}
+                            WebkitLineClamp: 2}}>{utils.chooseTitle(anime.title.english, anime.title.romaji)}
                             </Typography>
                         </Box>
                         <Paper sx={{bgcolor: '#0E0E0E', position: 'absolute', bottom: 70, left: 5, width: '3rem', height: '1.3rem'}}>
@@ -80,7 +56,7 @@ const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAni
                             <Typography noWrap fontSize='0.7rem' fontFamily='Nunito' mx={0.5}>•</Typography>
                             <Typography noWrap fontSize='0.7rem' fontFamily='Nunito' mx={0.5}>{anime.genres[0]}</Typography>
                             <Typography noWrap fontSize='0.7rem' fontFamily='Nunito' mx={0.5}>•</Typography>
-                            <Typography noWrap color={changeRatingColor(anime.rating)} fontSize='0.7rem' fontFamily='Nunito' mx={0.5}>{anime.rating}%</Typography>
+                            <Typography noWrap color={utils.changeRatingColor(anime.rating)} fontSize='0.7rem' fontFamily='Nunito' mx={0.5}>{anime.rating}%</Typography>
                         </Box>
                     </div>
 

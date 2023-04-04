@@ -1,5 +1,5 @@
-import { Typography, Grid, Container, Box, ClickAwayListener } from '@mui/material';
-import { useState, useEffect } from 'react';
+import {  Grid, Box } from '@mui/material';
+import { useState } from 'react';
 import BannerCarousel from '../components/BannerCarousel';
 import TrendingCarousel from '../components/TrendingCarousel';
 import AnimeModal from '../components/Modal';
