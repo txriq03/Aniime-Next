@@ -1,9 +1,12 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { Info, PlayCircle } from '@mui/icons-material';
-import { Grid, Typography, Box, Button, Container, Skeleton, Modal, Pagination } from '@mui/material';
+import { Grid, Typography, Box, Button, Skeleton, Modal, Pagination } from '@mui/material';
+import { utils } from '../utils';
 import axios from 'axios';
 import styles from '../styles/Modal.module.css';
 import { useRouter } from 'next/router';
+import { useQuery } from 'react-query';
+import { api } from '../utils';
 
 const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
     const [ episodeList, setEpisodeList ] = useState([]);
@@ -25,6 +28,8 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
     const displayEpisodes = episodeList?.slice(pagesVisited - 10, pagesVisited);
 
     const router = useRouter();
+
+    // const { data, status } = useQuery
 
     const getEpisodeList = async () => {
         console.log(animeId)
@@ -62,19 +67,6 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
     useEffect(() => {
         getEpisodeList()
     }, [animeId])
-
-    const changeRatingColor = () => {
-        if (rating <= 40) {
-            setRatingColor('red')
-        } else if (rating >= 70) {
-            setRatingColor('lightgreen')
-        } else {
-            setRatingColor('orange')
-        }
-    }
-    useEffect(() => {
-        changeRatingColor()
-    }, [ rating ])
 
     const handleClose = () => {
         console.log("Closing...")
@@ -130,7 +122,7 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                     }}>{englishTitle}</Typography>
                 <Typography variant='h8' align='left' fontFamily='Nunito' color='white' mt={1}>{nativeTitle}</Typography>
                 <Box display='flex' mt={1.5}>
-                    <Button variant='contained' size='large'><PlayCircle sx={{mr: 0.5}}/> Watch Episode 1</Button>
+                    <Button variant='contained' size='large' onClick={() => router.push('/watch/' + firstEpisodeId)}><PlayCircle sx={{mr: 0.5}}/> Watch Episode 1</Button>
                     <Button variant='outlined' size='large' sx={{ ml:1 }} onClick={() => window.open(trailerUrl, '_blank')}><Info sx={{mr: 0.5}}/>Watch Trailer</Button>
                 </Box>
                 <Typography variant='h10' align='left' fontFamily='Nunito' color='lightgrey' mt={1.5} sx={{
@@ -183,7 +175,7 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                 </Box>
                 <Box display= 'flex'>
                     <Typography fontFamily='Nunito' color='grey' ml={2} mb={3}>Rating: </Typography>
-                    <Typography fontFamily='Nunito' color={ratingColor} ml={0.5}>{rating}%</Typography>
+                    <Typography fontFamily='Nunito' color={utils.changeRatingColor(rating)} ml={0.5}>{rating}%</Typography>
                 </Box>
             </Box>
         </Grid>
