@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { api } from '../../utils';
 import { utils } from '../../utils';
 import AnimeModal from '../../components/Modal';
@@ -11,19 +11,20 @@ import { Theaters } from '@mui/icons-material';
 const Search = () => {
     const router = useRouter();
     const { query } = router.query;
-    const { data, status } = useQuery(['searchQuery', query], () => api.searchQuery(query))  
+    const searchQuery = useQuery({
+      queryKey: ['searchQuery', query],
+      queryFn: () => api.searchQuery(query)
+    })
+
+    // const { data, status } = useQuery(['searchQuery', query], () => api.searchQuery(query))  
     const [ animeId, setAnimeId ] = useState(null);
     const [ isModalopen, setIsModalOpen ] = useState(false);
     
   return (
     <>
-      {status === 'loading' ? 
-        <Typography color='white' variant='h4' ml={10} mt={2}>Loading...</Typography> :
-        <Typography color='white' variant='h4' ml={10} mt={2}>Results</Typography>
-      }
-
+    <Typography color='white' variant='h4' ml={10} mt={2}>Results</Typography>
     <Box display='flex' flexDirection='row' flexWrap='wrap' ml={10}>
-      {data?.results.map(anime => (
+      {searchQuery?.data?.results.map(anime => (
 
           <Card key={anime.id} sx={{mr: 2, mt: 1, mb: 1, cursor: 'pointer'}} onClick={() => {
             setAnimeId(anime.id); 

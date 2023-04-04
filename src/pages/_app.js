@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Layout from '../components/Layout';
-import { QueryClientProvider, QueryClient } from 'react-query';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
 export const theme = createTheme({
   overrides: {

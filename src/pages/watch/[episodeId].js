@@ -4,14 +4,18 @@ import { MediaOutlet, MediaPlayer } from '@vidstack/react';
 import 'vidstack/styles/defaults.css';
 import Axios from 'axios';
 import { useRouter } from 'next/router';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { api } from '../../utils';
 
 
 const Video = () => {
     const router = useRouter();
     const { episodeId } = router.query
-    const { data, status } = useQuery(['StreamingLink'], () => api.getSource(episodeId));
+    const streamingQuery = useQuery({
+        queryKey: ['streamingLink', episodeId],
+        queryFn: () => api.getSource(episodeId)
+    })
+    const data = streamingQuery?.data
     const videoUrl = data?.sources[3].url
 
     return (

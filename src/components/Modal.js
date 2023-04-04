@@ -5,21 +5,29 @@ import { utils } from '../utils';
 import axios from 'axios';
 import styles from '../styles/Modal.module.css';
 import { useRouter } from 'next/router';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { api } from '../utils';
 
 const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
-    const [ episodeList, setEpisodeList ] = useState([]);
-    const [ trailerUrl, setTrailerUrl ] = useState('');
-    const [ averageEpisode, setAverageEpisode ] = useState(0);
-    const [ rating, setRating ] = useState(0);
-    const [ ratingColor, setRatingColor ] = useState('');
-    const [ genres, setGenres ] = useState([]);
-    const [ firstEpisodeId, setFirstEpisodeId ] = useState('');
-    const [ cover, setCover ] = useState('');
-    const [ englishTitle, setEnglishTitle ] = useState('');
-    const [ nativeTitle, setNativeTitle ] = useState('');
-    const [ description, setDescription ] = useState('');
+    const infoData = useQuery({
+        queryKey: ['infoQuery', animeId],
+        queryFn: () => api.getInfo(animeId),
+        enabled: isModalOpen == true
+    })
+
+    // Setting variables from api
+    const data = infoData.data
+    console.log(data)
+    const episodeList = data?.episodes
+    const description = data?.description
+    const averageEpisode = data?.duration
+    const rating = data?.rating
+    const englishTitle = data?.title.english
+    const nativeTitle = data?.title.native
+    const cover = data?.cover
+    const genres = data?.genres
+    const firstEpisodeId = data?.episodes[0]?.id
+    const trailerUrl = `https://www.youtube.com/watch?v=${data?.trailer?.id}`
 
     //Page variables
     const [ totalPages, setTotalPages ] = useState(0);
@@ -29,56 +37,43 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
 
     const router = useRouter();
 
-    // const { data, status } = useQuery
-
+    
     const getEpisodeList = async () => {
-        console.log(animeId)
-        if (animeId != null) {
-            try {
-                const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/meta/anilist/info/${animeId}`);
-                console.log(data);
-                console.log(animeId);
+        console.log('triggered')
+    //     if (animeId != null) {
+    //         try {
+    //             const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/meta/anilist/info/${animeId}`);
+    //             console.log(animeId);
 
-                try {
-                    setTrailerUrl(`https://www.youtube.com/watch?v=${data.trailer.id}`)
-                } catch(err) {
-                    console.log("Trailer error: " + err)
-                }
+    //             try {
+    //                 setTrailerUrl(`https://www.youtube.com/watch?v=${data.trailer.id}`)
+    //             } catch(err) {
+    //                 console.log("Trailer error: " + err)
+    //             }
 
-                if (data.episodes != '') {
-                    setEpisodeList(data.episodes);
-                    setFirstEpisodeId(data.episodes[0].id)
-                }
-                setAverageEpisode(data.duration)
-                setGenres(data.genres)
-                setCover(data.cover)
-                setRating(data.rating)
-                setEnglishTitle(data.title.english)
-                setNativeTitle(data.title.native)
-                setDescription(data.description)
+    //             if (data.episodes != '') {
+    //                 setEpisodeList(data.episodes);
+    //                 setFirstEpisodeId(data.episodes[0].id)
+    //             }
+    //             setAverageEpisode(data.duration)
+    //             setGenres(data.genres)
+    //             setCover(data.cover)
+    //             setRating(data.rating)
+    //             setEnglishTitle(data.title.english)
+    //             setNativeTitle(data.title.native)
+    //             setDescription(data.description)
 
                 
 
-            } catch (err) {
-                throw new Error(err.message);
-            }
-        }
+    //         } catch (err) {
+    //             throw new Error(err.message);
+    //         }
+    //     }
     }
-    useEffect(() => {
-        getEpisodeList()
-    }, [animeId])
 
     const handleClose = () => {
         console.log("Closing...")
         setIsModalOpen(false);
-        setEpisodeList(null);
-        setAverageEpisode(null);
-        setGenres(null);
-        setFirstEpisodeId(null);
-        setCover(null);
-        setRating(null);
-        setEnglishTitle(null);
-        setNativeTitle(null);
         setPageNumber(1);
     }
 
