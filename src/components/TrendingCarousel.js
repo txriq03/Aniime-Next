@@ -24,12 +24,12 @@ const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAni
                                 borderRadius: 2, boxShadow: 5,  height: '280px', width: '176px', objectFit: 'cover', cursor: 'pointer'
                             }}/>
                         <Box className={styles.cardBox} position='absolute'  height='100%' width='100%' sx={{bottom: 0}}/>
-                        <Paper sx={{display: 'flex', justifyContent: 'center' ,position: 'absolute', bottom: 70, right: 5, width: '3.5rem', height: '1.3rem', bgcolor: '#BD284D'}}>
+                        <Paper sx={{display: 'flex', justifyContent: 'center' ,position: 'absolute', bottom: 70, right: 5, height: '1.3rem', bgcolor: '#BD284D'}}>
                             
                             {anime.totalEpisodes ?
                             <>
-                                <Theaters style={{fontSize: '1rem', marginTop: 1}}/> 
-                                <Typography fontFamily='Nunito' fontSize='0.8rem' align='center'> 
+                                <Theaters style={{fontSize: '1rem', marginTop: 1, marginLeft: 5}}/> 
+                                <Typography fontFamily='Nunito' fontSize='0.8rem' align='center' mr={1}> 
                                 {anime.totalEpisodes} 
                                 </Typography> 
                             </> :
