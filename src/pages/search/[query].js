@@ -1,5 +1,6 @@
 import { useQuery } from 'react-query';
 import { api } from '../../utils';
+import { utils } from '../../utils';
 import AnimeModal from '../../components/Modal';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -10,41 +11,21 @@ import { Theaters } from '@mui/icons-material';
 const Search = () => {
     const router = useRouter();
     const { query } = router.query;
-    const { data, status } = useQuery(['searchQuery'], () => api.searchQuery(query))
-    console.log(data)
-  
-    const [ animeid, setAnimeId ] = useState(null);
+    const { data, status } = useQuery(['searchQuery', query], () => api.searchQuery(query))  
+    const [ animeId, setAnimeId ] = useState(null);
     const [ isModalopen, setIsModalOpen ] = useState(false);
-
-    const chooseTitle= (english, romaji) => {
-      if (english != null) {
-      return english
-      } else {
-      return romaji
-      }
-    }
-
-    const changeRatingColor = (rating) => {
-      if (rating < 40) {
-          return 'red'
-      } else if (rating >= 70) {
-        return 'lightgreen'
-      } else {
-          return 'orange'
-      }
-    }
     
   return (
     <>
       {status === 'loading' ? 
-        <Typography color='white' variant='h3' ml={10}>Loading...</Typography> :
-        <Typography color='white' variant='h3' ml={10}>Results</Typography>
+        <Typography color='white' variant='h4' ml={10} mt={2}>Loading...</Typography> :
+        <Typography color='white' variant='h4' ml={10} mt={2}>Results</Typography>
       }
 
     <Box display='flex' flexDirection='row' flexWrap='wrap' ml={10}>
       {data?.results.map(anime => (
 
-          <Card key={anime.id} sx={{mr: 2, mt: 1, mb: 5, cursor: 'pointer'}} onClick={() => {
+          <Card key={anime.id} sx={{mr: 2, mt: 1, mb: 1, cursor: 'pointer'}} onClick={() => {
             setAnimeId(anime.id); 
             setIsModalOpen(true)
             }}>
@@ -72,7 +53,7 @@ const Search = () => {
                   WebkitBoxOrient: 'vertical', 
                   overflow: 'hidden',
                   lineHeight: 1.1,   
-                  WebkitLineClamp: 2}}>{chooseTitle(anime.title.english, anime.title.romaji)}
+                  WebkitLineClamp: 2}}>{utils.chooseTitle(anime.title.english, anime.title.romaji)}
                   </Typography>
               </Box>
               <Paper sx={{bgcolor: '#0E0E0E', position: 'absolute', bottom: 70, left: 5, width: '3rem', height: '1.3rem'}}>
@@ -87,13 +68,14 @@ const Search = () => {
                   <Typography noWrap fontSize='0.7rem' fontFamily='Nunito' mx={0.5}>•</Typography>
                   <Typography noWrap fontSize='0.7rem' fontFamily='Nunito' mx={0.5}>{anime.genres[0]}</Typography>
                   <Typography noWrap fontSize='0.7rem' fontFamily='Nunito' mx={0.5}>•</Typography>
-                  <Typography noWrap color={changeRatingColor(anime.rating)} fontSize='0.7rem' fontFamily='Nunito' mx={0.5}>{anime.rating}%</Typography>
+                  <Typography noWrap color={utils.changeRatingColor(anime.rating)} fontSize='0.7rem' fontFamily='Nunito' mx={0.5}>{anime.rating}%</Typography>
               </Box>
           </div>
 
           </Card>
       ))}
       </Box>
+      <AnimeModal animeId={animeId} isModalOpen={isModalopen} setIsModalOpen={setIsModalOpen}/>
     </>
   )
 }

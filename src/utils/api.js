@@ -64,7 +64,7 @@ export const getInfo = async (id) => {
 
 export const searchQuery = async (query) => {
   let { data } = await api.get(`/meta/anilist/${query}?page=1`)
-
+  console.log(query)
   if (!data) return {
     error: "No data"
   };
