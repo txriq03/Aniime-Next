@@ -1,5 +1,5 @@
 import { Typography, Box, Button } from '@mui/material';
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { Carousel } from '@mantine/carousel';
 import { Info, PlayArrowRounded, Theaters } from '@mui/icons-material';
 import Autoplay from 'embla-carousel-autoplay';

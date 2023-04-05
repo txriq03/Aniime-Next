@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Info, PlayCircle } from '@mui/icons-material';
-import { Grid, Typography, Box, Button, Skeleton, Modal, Pagination } from '@mui/material';
+import { Grid, Typography, Box, Button, Skeleton, Modal, Pagination, Backdrop, CircularProgress } from '@mui/material';
 import { utils } from '../utils';
-import axios from 'axios';
 import styles from '../styles/Modal.module.css';
 import { useRouter } from 'next/router';
 import { useQuery } from '@tanstack/react-query';
@@ -15,6 +14,7 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
         enabled: isModalOpen == true
     })
 
+    
     // Setting variables from api
     const data = infoData.data
     console.log(data)
@@ -28,48 +28,13 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
     const genres = data?.genres
     const firstEpisodeId = data?.episodes[0]?.id
     const trailerUrl = `https://www.youtube.com/watch?v=${data?.trailer?.id}`
-
+    
     //Page variables
     const [ totalPages, setTotalPages ] = useState(0);
     const [ pageNumber, setPageNumber ] = useState(1);
     const pagesVisited = pageNumber * 10;
     const displayEpisodes = episodeList?.slice(pagesVisited - 10, pagesVisited);
-
     const router = useRouter();
-
-    
-    const getEpisodeList = async () => {
-        console.log('triggered')
-    //     if (animeId != null) {
-    //         try {
-    //             const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/meta/anilist/info/${animeId}`);
-    //             console.log(animeId);
-
-    //             try {
-    //                 setTrailerUrl(`https://www.youtube.com/watch?v=${data.trailer.id}`)
-    //             } catch(err) {
-    //                 console.log("Trailer error: " + err)
-    //             }
-
-    //             if (data.episodes != '') {
-    //                 setEpisodeList(data.episodes);
-    //                 setFirstEpisodeId(data.episodes[0].id)
-    //             }
-    //             setAverageEpisode(data.duration)
-    //             setGenres(data.genres)
-    //             setCover(data.cover)
-    //             setRating(data.rating)
-    //             setEnglishTitle(data.title.english)
-    //             setNativeTitle(data.title.native)
-    //             setDescription(data.description)
-
-                
-
-    //         } catch (err) {
-    //             throw new Error(err.message);
-    //         }
-    //     }
-    }
 
     const handleClose = () => {
         console.log("Closing...")
@@ -96,6 +61,15 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
         setPageNumber(value);
         console.log('Page ' + value)
     }
+
+    if (infoData.status === 'loading' && isModalOpen == true) {
+        return (
+            <Backdrop open={true}>
+                <CircularProgress color='primary'/>
+            </Backdrop>
+        )
+    }
+
   return (
     <Modal align='center' open={isModalOpen} onClose={handleClose} style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
         <Grid className={styles.ModalGrid} justifyContent='center' sx={{
