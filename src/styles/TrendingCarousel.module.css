@@ -26,12 +26,6 @@
 }
 .cardImage {
     background: linear-gradient(to top, rgba(0,0,0,0)  black);
-    border-radius: 2;
-    box-shadow: 3;
-    height: 280px;
-    width: 176px;
-    object-fit: cover;
-    cursor: pointer;
 }
 .card-title {
     -webkit-line-clamp: 2;

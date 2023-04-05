@@ -4,6 +4,7 @@ import {  useState, useEffect } from 'react';
 import { Carousel } from '@mantine/carousel';
 import { Theaters} from '@mui/icons-material';
 import styles from '../styles/TrendingCarousel.module.css'
+import Image from 'next/image';
 
 const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAnimeId}) => {
   return (
@@ -20,9 +21,12 @@ const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAni
                     setIsModalOpen(true)
                     }}>
                     <div style={{position: 'relative'}}>
-                        <CardMedia className={styles.cardImage} component='img' image={anime.image} sx={{ 
-                                borderRadius: 2, boxShadow: 5,  height: '280px', width: '176px', objectFit: 'cover', cursor: 'pointer'
-                            }}/>
+                        {/* <CardMedia className={styles.cardImage} component='img' image={anime.image} sx={{ 
+                            borderRadius: 2, boxShadow: 5,  height: '280px', width: '176px', objectFit: 'cover', cursor: 'pointer'
+                        }}/> */}
+
+                        {/* This image component might not work in Vercel */}
+                        <Image src={anime.image} className={styles.cardImage} width={176} height={280} alt={utils.chooseTitle(anime.title.english, anime.title.romaji)}/>
                         <Box className={styles.cardBox} position='absolute'  height='100%' width='100%' sx={{bottom: 0}}/>
                         <Paper sx={{display: 'flex', justifyContent: 'center' ,position: 'absolute', bottom: 70, right: 5, height: '1.3rem', bgcolor: '#BD284D'}}>
                             
