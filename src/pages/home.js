@@ -20,7 +20,7 @@ const Home = () => {
       <title>Aniime - Home</title>
     </Head>
     <Grid justifyContent='center'>
-      <BannerCarousel results={data} setIsModalOpen={setIsModalOpen} />
+      <BannerCarousel results={data} setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} animeId={animeId} setAnimeId={setAnimeId}/>
       <Box sx={{maxWidth: '95%', margin: 'auto'}}>
         <TrendingCarousel results={data} animeId={animeId} setAnimeId={setAnimeId} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </Box>
