@@ -17,7 +17,6 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
     
     // Setting variables from api
     // const data = infoData.data
-    console.log(data)
     const episodeList = data?.episodes
     const description = data?.description
     const averageEpisode = data?.duration
