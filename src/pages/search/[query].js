@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { Typography, Grid, Box, Card, CardMedia, Paper } from '@mui/material';
 import styles from '../../styles/TrendingCarousel.module.css';
 import { Theaters } from '@mui/icons-material';
+import Image from 'next/image';
 
 const Search = () => {
     const router = useRouter();
@@ -31,9 +32,10 @@ const Search = () => {
             setIsModalOpen(true)
             }}>
           <div style={{position: 'relative'}}>
-              <CardMedia  component='img' image={anime.image} sx={{ 
+              {/* <CardMedia  component='img' image={anime.image} sx={{ 
                       borderRadius: 2, boxShadow: 5,  height: '280px', width: '176px', objectFit: 'cover', cursor: 'pointer'
-                  }}/>
+                  }}/> */}
+              <Image src={anime.image} style={{objectFit: 'cover', borderRadius: 5, boxShadow: 5}} className={styles.cardImage} width={176} height={280} alt={utils.chooseTitle(anime.title.english, anime.title.romaji)}/>
               <Box className={styles.cardBox} position='absolute'  height='100%' width='100%' sx={{bottom: 0}}/>
               <Paper sx={{display: 'flex', justifyContent: 'center' ,position: 'absolute', bottom: 70, right: 5, height: '1.3rem', bgcolor: '#BD284D'}}>
                   

@@ -5,6 +5,7 @@ import { Info, PlayArrowRounded, Theaters } from '@mui/icons-material';
 import Autoplay from 'embla-carousel-autoplay';
 import { utils } from '../utils';
 import AnimeModal from '../components/Modal';
+import Image from 'next/image';
 
 const BannerCarousel = ({results, setAnimeId, animeId, isModalOpen, setIsModalOpen }) => {
   const autoplay = useRef(Autoplay({ delay: 5000 }));

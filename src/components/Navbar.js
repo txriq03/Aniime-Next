@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { styled } from '@mui/system';
 import styles from '../styles/Navbar.module.css';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const StyledIconButton = styled(IconButton)`
   &:hover {
@@ -58,12 +59,12 @@ const Navbar = () => {
         </Box>
       </Drawer>
 
-      <AppBar position="static" enableColorOnDark sx={{bgcolor: 'black'}} elevation={1} >
+      <AppBar position="static"  sx={{bgcolor: 'black'}} elevation={1} >
         <Toolbar>
           <IconButton sx={{ml: { xs: -1, md: 5} }} onClick={() => setIsDrawerOpen(true)}>
             <Menu fontSize='large' />
           </IconButton>
-          <Box
+          {/* <Box
             component='img'
             alt="Aniime"
             src='/aniime.png'
@@ -75,7 +76,14 @@ const Navbar = () => {
               flexGrow: 0
             }}
             onClick={() => router.push('/home')}
-          />
+          /> */}
+          <Box position='relative'>
+            <Image priority alt="Aniime" src='/aniime.png' height={35} width={150} style={{
+                cursor: 'pointer',  objectFit: 'contain'
+              }}
+            />
+
+          </Box>
           <Typography noWrap>by txriq03</Typography>
           <OutlinedInput sx={{ m: 'auto', width: '30%', bgcolor: '#0e0e0e', textAlign: 'center', fontFamily: 'Nunito', borderRadius: 2}} size='small' onChange={(e) => setQuery(e.target.value)} startAdornment={<IconButton sx={{ml: -0.5}} onClick={() => router.push(`/search/${query}`)}> <Search/> </IconButton>} placeholder='Search...' />
           <IconButton sx={{mr: 1}} href='https://discord.com/invite/qTPfvMxzNH'>
