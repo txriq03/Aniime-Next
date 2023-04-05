@@ -8,15 +8,15 @@ import { useQuery } from '@tanstack/react-query';
 import { api } from '../utils';
 
 const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
-    const infoData = useQuery({
+    const { data, isError, isLoading, error}  = useQuery({
         queryKey: ['infoQuery', animeId],
         queryFn: () => api.getInfo(animeId),
-        enabled: isModalOpen == true
+        enabled: isModalOpen === true
     })
 
     
     // Setting variables from api
-    const data = infoData.data
+    // const data = infoData.data
     console.log(data)
     const episodeList = data?.episodes
     const description = data?.description
@@ -42,33 +42,34 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
         setPageNumber(1);
     }
 
-    //Function to display number of episodes each page
-    const episodesEachPage = (arr, eachPage) => {
-        const res = [];
-        if (arr != null) {
-            for (let i = 0; i < arr.length; i += eachPage) {
-                const page = arr.slice(i, i + eachPage);
-                res.push(page);
-            }
-        }
-        setTotalPages(res.length)
-    }
     useEffect(() => {
-        episodesEachPage(episodeList, 10)
+        utils.episodesEachPage(episodeList, 10, setTotalPages)
     }, [episodeList])
 
     const handlePageChange = (event, value) => {
         setPageNumber(value);
         console.log('Page ' + value)
     }
+ 
+    if (isError) {
+        console.log(`Error: ${error.message}`)
+    }
 
-    if (infoData.status === 'loading' && isModalOpen == true) {
+    if (isLoading && isModalOpen == true) {
         return (
             <Backdrop open={true}>
                 <CircularProgress color='primary'/>
             </Backdrop>
         )
     }
+    // if (infoData.status === 'loading' && isModalOpen == true) {
+    //     return (
+    //         <Backdrop open={true}>
+    //             <CircularProgress color='primary'/>
+    //         </Backdrop>
+    //     )
+    // }
+
 
   return (
     <Modal align='center' open={isModalOpen} onClose={handleClose} style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}} >

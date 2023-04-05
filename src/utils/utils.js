@@ -15,4 +15,15 @@ export const changeRatingColor = (rating) => {
         return 'orange'
     }
   }
-
+  
+//Function to display number of episodes each page
+export const episodesEachPage = (arr, eachPage, setTotalPages) => {
+  const res = [];
+  if (arr != null) {
+      for (let i = 0; i < arr.length; i += eachPage) {
+          const page = arr.slice(i, i + eachPage);
+          res.push(page);
+      }
+  }
+  setTotalPages(res.length)
+}
