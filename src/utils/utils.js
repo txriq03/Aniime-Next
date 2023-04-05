@@ -15,3 +15,4 @@ export const changeRatingColor = (rating) => {
         return 'orange'
     }
   }
+
