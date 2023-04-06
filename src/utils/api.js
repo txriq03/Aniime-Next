@@ -53,14 +53,20 @@ export const getSource = async (episodeId, server) => {
 };
 
 export const getInfo = async (id) => {
-  let { data } = await api.get(`/meta/anilist/info/${id}`)
-  console.log(data)
+  try {
+    let { data } = await api.get(`/meta/anilist/info/${id}`)
+    console.log(data)
 
-  if (!data)
-  return {
-    error: "No data"
-  };
-  return data
+    if (!data)
+    return {
+      error: "No data"
+    };
+    return data
+
+  } catch (err) {
+    throw new Error(err.message)
+  }
+
 }
 
 export const searchQuery = async (query) => {
