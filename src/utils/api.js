@@ -54,6 +54,7 @@ export const getSource = async (episodeId, server) => {
 
 export const getInfo = async (id) => {
   let { data } = await api.get(`/meta/anilist/info/${id}`)
+  console.log(data)
 
   if (!data)
   return {

@@ -14,10 +14,6 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
         enabled: isModalOpen === true
     })
 
-    
-    // Setting variables from api
-    // const data = infoData.data
-    console.log(data)
     const episodeList = data?.episodes
     const description = data?.description
     const averageEpisode = data?.duration
@@ -42,6 +38,10 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
         setPageNumber(1);
     }
 
+    const [ isShowMore, setIsShowMore ] = useState(false);
+
+
+
     useEffect(() => {
         utils.episodesEachPage(episodeList, 10, setTotalPages)
     }, [episodeList])
@@ -62,13 +62,7 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
             </Backdrop>
         )
     }
-    // if (infoData.status === 'loading' && isModalOpen == true) {
-    //     return (
-    //         <Backdrop open={true}>
-    //             <CircularProgress color='primary'/>
-    //         </Backdrop>
-    //     )
-    // }
+
 
 
   return (
@@ -87,18 +81,22 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                 <Skeleton variant='rectangular' width='100%' height='33%'/>
             }
             <Box ml={4} mr={4} mt={1} display='flex' flexDirection='column'>
+                
                 <Typography variant='h3' align='left' fontFamily='Youtube Sans' color='white' sx={{
                         display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 1, overflow: 'hidden'
                     }}>{englishTitle}</Typography>
                 <Typography variant='h8' align='left' fontFamily='Nunito' color='white' mt={1}>{nativeTitle}</Typography>
+
                 <Box display='flex' mt={1.5}>
                     <Button variant='contained' size='large' onClick={() => router.push('/watch/' + firstEpisodeId)}><PlayCircle sx={{mr: 0.5}}/> Watch Episode 1</Button>
                     <Button variant='outlined' size='large' sx={{ ml:1 }} onClick={() => window.open(trailerUrl, '_blank')}><Info sx={{mr: 0.5}}/>Watch Trailer</Button>
                 </Box>
+
                 <Typography variant='h10' align='left' fontFamily='Nunito' color='lightgrey' mt={1.5} sx={{
-                    display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 6, overflow: 'hidden'
+                    display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: utils.showMore(isShowMore), overflow: 'hidden'
                 }}>{description}</Typography>
-                <Button variant='text' align='left' mt={1} sx={{width: '100px'}}>Show More</Button>
+
+                <Button variant='text' align='left' mt={1} sx={{width: '100px'}} onClick={() => setIsShowMore(!isShowMore)}>Show {utils.moreOrLess(isShowMore)}</Button>
                 <Typography variant='h6' color='whitesmoke' fontFamily='Youtube Sans' align='left' mt={1}>Episodes</Typography>
                 
                 {episodeList &&

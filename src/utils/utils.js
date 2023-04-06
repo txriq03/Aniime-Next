@@ -27,3 +27,19 @@ export const episodesEachPage = (arr, eachPage, setTotalPages) => {
   }
   setTotalPages(res.length)
 }
+
+export const showMore = (isShowMore) => {
+  if (isShowMore == false) {
+      return 6
+  } else {
+      return null
+  }
+}
+
+export const moreOrLess = (isShowMore) => {
+  if (isShowMore == false) {
+    return 'More'
+  } else {
+    return 'Less'
+  }
+}
