@@ -82,7 +82,7 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
             overflowY: 'auto', 
             overflowX: 'hidden'}} >
             {cover ? 
-                <Box component='img' src={cover} sx={{objectFit: 'cover', width: '100%', height: { md: '33%', sm: '22%', xs: '22%'}}}/> : 
+                <Box component='img' src={cover} sx={{objectFit: 'cover', width: '100%', height: { lg: '33%', md: '25%', sm: '22%', xs: '22%'}}}/> : 
                 <Skeleton variant='rectangular' width='100%' height='33%'/>
             }
             <Box ml={4} mr={4} mt={1} display='flex' flexDirection='column'>
@@ -117,7 +117,9 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                                 borderRadius={1}
                                 /> 
                                 <Box>
-                                    <Typography my={2} mx={2} color='whitesmoke' align='left' noWrap textOverflow='hidden'>{episode.number}. {episode.title}</Typography>
+                                    <Typography my={2} mx={2} color='whitesmoke' align='left' noWrap style={{
+                                        display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 1, overflow: 'hidden'
+                                    }} >{episode.number}. {episode.title}</Typography>
                                     <Typography fontSize={14} my={-1} mx={2} color='whitesmoke' align='left' fontFamily='Nunito' style={{
                                             display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 3, overflow: 'hidden'
                                         }}>{episode.description}</Typography>
