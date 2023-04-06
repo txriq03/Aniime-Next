@@ -20,7 +20,7 @@ const Video = () => {
 
     return (
         <Grid justifyContent='center'>
-            <MediaPlayer controls autoplay style={{width: '90vw', align: 'center'}} src={process.env.NEXT_PUBLIC_PROXY + '/' + videoUrl}> <MediaOutlet/> </MediaPlayer>
+            <MediaPlayer controls autoplay src={process.env.NEXT_PUBLIC_PROXY + '/' + videoUrl}> <MediaOutlet/> </MediaPlayer>
         </Grid>
         )
     }

@@ -64,19 +64,7 @@ const Navbar = () => {
           <IconButton sx={{ml: { xs: -1, md: 5} }} onClick={() => setIsDrawerOpen(true)}>
             <Menu fontSize='large' />
           </IconButton>
-          {/* <Box
-            component='img'
-            alt="Aniime"
-            src='/aniime.png'
-            sx={{
-              cursor: 'pointer',
-              py: '12px',
-              px: '10px',
-              width: '150px',
-              flexGrow: 0
-            }}
-            onClick={() => router.push('/home')}
-          /> */}
+          
           <Box position='relative'>
             <Image priority placeholder='blur' blurDataURL='/aniime.png' alt="Aniime" src='/aniime.png' height={35} width={150} style={{
                 cursor: 'pointer',  objectFit: 'contain'

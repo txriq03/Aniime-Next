@@ -10,10 +10,17 @@ body {
   padding: 0;
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgb(255, 66, 66);
+::-webkit-scrollbar {
+  width: 0.7em;
+  border-radius: 2px;
 }
-
+::-webkit-scrollbar-thumb {
+  background: rgb(255, 66, 113);
+  border-radius: 100vw;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(234, 29, 80);
+}
 
 /* :root {
   --max-width: 1100px;
