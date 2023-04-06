@@ -80,7 +80,7 @@ const Navbar = () => {
           <Box position='relative'>
             <Image priority placeholder='blur' blurDataURL='/aniime.png' alt="Aniime" src='/aniime.png' height={35} width={150} style={{
                 cursor: 'pointer',  objectFit: 'contain'
-              }}
+              }} onClick={() => router.push('/home')}
             />
 
           </Box>
