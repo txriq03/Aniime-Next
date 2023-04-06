@@ -3,6 +3,7 @@ import { useState } from 'react';
 import BannerCarousel from '../components/BannerCarousel';
 import TrendingCarousel from '../components/TrendingCarousel';
 import RecentlyUpdatedCarousel from '../components/RecentlyUpdatedCarousel';
+import PopularCarousel from '../components/PopularCarousel';
 import AnimeModal from '../components/Modal';
 import Head from 'next/head';
 import { useQuery } from '@tanstack/react-query';
@@ -11,10 +12,10 @@ import { api } from '../utils';
 const Home = () => {
   const [ animeId, setAnimeId ] = useState(null);
   const [ isModalOpen, setIsModalOpen ] = useState(false);
-  const { data: trendingData, status: trendingStatus } = useQuery(['TrendingData'], () => api.getTrending(1, 10));
+  const { data: trendingData, status: trendingStatus } = useQuery(['trendingData'], () => api.getTrending());
   const { data: recentlyUpdatedData, status: recentlyUpdatedStatus } = useQuery(['recentlyUpdatedData'], () => api.getRecentlyUpdated())
-
-  console.log(trendingData)
+  const { data: popularData, status: popularStatus } = useQuery(['popularData'], () => api.getPopular())
+  console.log(recentlyUpdatedData)
 
   return (
     <>
@@ -25,6 +26,7 @@ const Home = () => {
       <BannerCarousel results={trendingData} setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} animeId={animeId} setAnimeId={setAnimeId}/>
       <Box sx={{maxWidth: '95%', margin: 'auto'}}>
         <TrendingCarousel results={trendingData} animeId={animeId} setAnimeId={setAnimeId} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+        <PopularCarousel results={popularData} animeId={animeId} setAnimeId={setAnimeId} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
         <RecentlyUpdatedCarousel results={recentlyUpdatedData} animeId={animeId} setAnimeId={setAnimeId} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
       </Box>
     </Grid>
