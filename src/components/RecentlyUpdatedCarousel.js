@@ -1,16 +1,17 @@
 import { Box, Typography, Card, CardMedia, Backdrop, Paper } from '@mui/material';
 import { utils } from '../utils';
+import {  useState, useEffect } from 'react';
 import { Carousel } from '@mantine/carousel';
 import { Theaters} from '@mui/icons-material';
 import styles from '../styles/TrendingCarousel.module.css'
 import Image from 'next/image';
 
-const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAnimeId}) => {
+const RecentlyUpdatedCarousel = ({results, animeId, setAnimeId, isModalOpen, setIsModalOpen}) => {
   return (
     <>
     <Typography variant='h3' fontFamily='Nunito' fontWeight='bold' color='white' sx={{
-            mt: 2, fontSize: { lg: '2rem', md: '1.8rem', sm: '1.5rem', xs: '1.5rem'
-        }}}>Trending</Typography>
+            mt: 1, fontSize: { lg: '2rem', md: '1.8rem', sm: '1.5rem', xs: '1.5rem'
+        }}}>Recently Updated</Typography>
     <Carousel mx='auto'  draggable align='start' slideSize={1} slidesToScroll={3} dragFree >
         {results?.map(anime => (
             <Carousel.Slide key={anime.id}>
@@ -68,9 +69,8 @@ const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAni
             </Carousel.Slide>
         ))}
     </Carousel>
-    </>
-
-  )
+    </>  
+    )
 }
 
-export default TrendingCarousel
+export default RecentlyUpdatedCarousel

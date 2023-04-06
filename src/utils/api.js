@@ -62,7 +62,7 @@ export const getInfo = async (id) => {
       error: "No data"
     };
     return data
-
+    
   } catch (err) {
     throw new Error(err.message)
   }

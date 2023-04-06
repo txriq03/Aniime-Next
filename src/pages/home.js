@@ -2,6 +2,7 @@ import {  Grid, Box } from '@mui/material';
 import { useState } from 'react';
 import BannerCarousel from '../components/BannerCarousel';
 import TrendingCarousel from '../components/TrendingCarousel';
+import RecentlyUpdatedCarousel from '../components/RecentlyUpdatedCarousel';
 import AnimeModal from '../components/Modal';
 import Head from 'next/head';
 import { useQuery } from '@tanstack/react-query';
@@ -10,9 +11,10 @@ import { api } from '../utils';
 const Home = () => {
   const [ animeId, setAnimeId ] = useState(null);
   const [ isModalOpen, setIsModalOpen ] = useState(false);
-  const { data, status } = useQuery(['TrendingData'], () => api.getTrending(1, 10));
+  const { data: trendingData, status: trendingStatus } = useQuery(['TrendingData'], () => api.getTrending(1, 10));
+  const { data: recentlyUpdatedData, status: recentlyUpdatedStatus } = useQuery(['recentlyUpdatedData'], () => api.getRecentlyUpdated())
 
-  console.log(data)
+  console.log(trendingData)
 
   return (
     <>
@@ -20,9 +22,10 @@ const Home = () => {
       <title>Aniime - Home</title>
     </Head>
     <Grid justifyContent='center'>
-      <BannerCarousel results={data} setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} animeId={animeId} setAnimeId={setAnimeId}/>
+      <BannerCarousel results={trendingData} setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} animeId={animeId} setAnimeId={setAnimeId}/>
       <Box sx={{maxWidth: '95%', margin: 'auto'}}>
-        <TrendingCarousel results={data} animeId={animeId} setAnimeId={setAnimeId} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+        <TrendingCarousel results={trendingData} animeId={animeId} setAnimeId={setAnimeId} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+        <RecentlyUpdatedCarousel results={recentlyUpdatedData} animeId={animeId} setAnimeId={setAnimeId} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
       </Box>
     </Grid>
     <AnimeModal animeId={animeId} setAnimeId={setAnimeId} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
