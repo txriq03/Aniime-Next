@@ -59,7 +59,10 @@ const TrendingCarousel = ({results, isModalOpen, setIsModalOpen, animeId, setAni
                             <Typography noWrap fontSize='0.7rem' fontFamily='Nunito' mx={0.5}>•</Typography>
                             <Typography noWrap fontSize='0.7rem' fontFamily='Nunito' mx={0.5}>{anime.genres[0]}</Typography>
                             <Typography noWrap fontSize='0.7rem' fontFamily='Nunito' mx={0.5}>•</Typography>
-                            <Typography noWrap color={utils.changeRatingColor(anime.rating)} fontSize='0.7rem' fontFamily='Nunito' mx={0.5}>{anime.rating}%</Typography>
+                            {anime.rating != null ?
+                            <Typography noWrap color={utils.changeRatingColor(anime.rating)} fontSize='0.7rem' fontFamily='Nunito' mx={0.5}>{anime.rating}%</Typography> :
+                            <Typography noWrap color='grey' fontSize='0.7rem' fontFamily='Nunito' mx={0.5}>N/A</Typography>
+                            }                        
                         </Box>
                     </div>
 

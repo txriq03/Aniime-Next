@@ -145,7 +145,10 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                 </Box>
                 <Box display= 'flex'>
                     <Typography fontFamily='Nunito' color='grey' ml={2} mb={3}>Rating: </Typography>
-                    <Typography fontFamily='Nunito' color={utils.changeRatingColor(rating)} ml={0.5}>{rating}%</Typography>
+                    {rating != null ?
+                    <Typography fontFamily='Nunito' color={utils.changeRatingColor(rating)} ml={0.5}>{rating}%</Typography> :
+                    <Typography fontFamily='Nunito' color='silver' ml={0.5}>N/A</Typography>
+                    }
                 </Box>
             </Box>
         </Grid>
