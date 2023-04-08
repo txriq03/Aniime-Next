@@ -28,9 +28,9 @@ const RecentlyUpdatedCarousel = ({results, animeId, setAnimeId, isModalOpen, set
                         {/* This image component might not work in Vercel */}
                         <Image src={anime.image} className={styles.cardImage} width={176} height={280} style={{objectFit: 'cover'}} alt={utils.chooseTitle(anime.title.english, anime.title.romaji)}/>
                         <Box className={styles.cardBox} position='absolute'  height='100%' width='100%' sx={{bottom: 0}}/>
-                        <Paper sx={{display: 'flex', justifyContent: 'center' ,position: 'absolute', bottom: 70, right: 5, height: '1.3rem', bgcolor: 'whitesmoke'}}>                            
-                            <Typography mx={1} fontFamily='Youtube Sans' color='#BD284D' fontSize='0.8rem' align='center'>
-                            NEW
+                        <Paper sx={{display: 'flex', justifyContent: 'center' ,position: 'absolute', bottom: 70, right: 5, height: '1.3rem', bgcolor: '#BD284D'}}>                            
+                            <Typography mx={1} fontFamily='Youtube Sans' color='whitesmoke' fontSize='0.8rem' align='center'>
+                            Ep {anime.episodeNumber}
                             </Typography>
                         </Paper>
                         <Box sx={{ position: 'absolute',  zIndex: 2, width: '90%', mx: 1, top: '80%', textOverflow: 'ellipsis'}}>
