@@ -15,7 +15,7 @@ const BannerCarousel = ({results, setAnimeId, animeId, isModalOpen, setIsModalOp
       <Carousel mx='auto'  loop plugins={[autoplay.current]} withIndicators height='25vw' draggable align='center' sx={{ position: 'relative'}}>
       {results?.slice(0, 7).map(anime => (
         <Carousel.Slide key={anime.id}>
-          <Image priority src={anime.cover} alt='Banner' fill style={{filter: 'brightness(35%) blur(7px)', objectFit: 'cover'}} />
+          <Image priority src={anime.cover} alt='Banner' fill style={{filter: 'brightness(35%) blur(0.5vw)', objectFit: 'cover'}} />
           <Box width='35%' sx={{display: 'block', position: 'absolute', bottom: '60%', left: '10%'}}>
             <Typography color='white' className='cover-title' variant='h2' fontSize='3vw' fontFamily='Nunito' fontWeight='bold' sx={{
                 display:'-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 2, overflow: 'hidden'
