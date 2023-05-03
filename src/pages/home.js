@@ -11,6 +11,7 @@ import { api } from '../utils';
 
 const Home = () => {
   const [ animeId, setAnimeId ] = useState(null);
+  const [ test, setTesting ] = useState(null);
   const [ isModalOpen, setIsModalOpen ] = useState(false);
   const { data: trendingData, status: trendingStatus } = useQuery(['trendingData'], () => api.getTrending());
   const { data: recentlyUpdatedData, status: recentlyUpdatedStatus } = useQuery(['recentlyUpdatedData'], () => api.getRecentlyUpdated())
