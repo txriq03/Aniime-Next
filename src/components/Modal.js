@@ -101,7 +101,7 @@ const AnimeModal = ({setAnimeId, animeId, isModalOpen, setIsModalOpen}) => {
                 
                 {episodeList &&
                 <Box>
-                    {displayEpisodes.reverse().map(episode => {
+                    {displayEpisodes.map(episode => {
                         return (
                             <Box display='flex' onClick={() => {router.push('/watch/' + episode.id)}} flexDirection='row' key={episode.id} sx={{cursor: 'pointer'}}>
                                 <Box
