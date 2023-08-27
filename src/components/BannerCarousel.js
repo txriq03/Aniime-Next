@@ -22,9 +22,10 @@ const BannerCarousel = ({results, setAnimeId, animeId, isModalOpen, setIsModalOp
               }} >{utils.chooseTitle(anime.title.english, anime.title.romaji)}</Typography>
           </Box>
           <Box width='35%' sx={{display: 'block', position: 'absolute', top: '40%', left: '10%'}}>
-            <Typography color='white' variant='h6' fontSize='1.1vw' fontFamily='Nunito' sx={{
+            <p style={{color: 'white', display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 4, overflow: 'hidden', lineHeight: 1.2, fontSize: '1.1vw', fontFamily: 'Nunito'}} dangerouslySetInnerHTML={{__html: anime.description}}/>
+            {/* <Typography color='white' variant='h6' fontSize='1.1vw' fontFamily='Nunito' sx={{
                 display:'-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 4, overflow: 'hidden', lineHeight: 1.2
-              }}>{anime.description}</Typography>
+              }}>{anime.description}</Typography> */}
             <Button variant='contained' size='large' 
             onClick={() => {
               setAnimeId(anime.id); 

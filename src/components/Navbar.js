@@ -16,6 +16,7 @@ const Navbar = () => {
   const router = useRouter();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);    
   const [ query, setQuery ] = useState('')
+  const mobileWidth = useMediaQuery('(max-width: 700px)');
 
   return (
     <>
@@ -70,14 +71,8 @@ const Navbar = () => {
                 cursor: 'pointer',  objectFit: 'contain'
               }} onClick={() => router.push('/home')}
             />
-
           </Box>
-          <Typography noWrap>by txriq03</Typography>
-          <OutlinedInput sx={{ m: 'auto', width: '30%', bgcolor: '#0e0e0e', textAlign: 'center', fontFamily: 'Nunito', borderRadius: 2}} size='small' onChange={(e) => setQuery(e.target.value)} startAdornment={<IconButton sx={{ml: -0.5}} onClick={() => router.push(`/search/${query}`)}> <Search/> </IconButton>} placeholder='Search...' />
-          <IconButton sx={{mr: 1}} href='https://discord.com/invite/qTPfvMxzNH'>
-            <FaDiscord size='1.2em' color='#5562EA'/>
-          </IconButton>
-          <Button variant='contained' endIcon={<KeyboardDoubleArrowRight/>} sx={{mr: 10, whiteSpace: 'nowrap', minWidth: 80}} >Sign in</Button>
+          <OutlinedInput sx={{  ml: 'auto', mr: 0, width: '30%', bgcolor: '#0e0e0e', textAlign: 'center', fontFamily: 'Nunito', borderRadius: 2}} size='small' onChange={(e) => setQuery(e.target.value)} endAdornment={<IconButton sx={{ml: -0.5}} onClick={() => router.push(`/search/${query}`)}> <Search/> </IconButton>} placeholder='Search...' />
         </Toolbar>
       </AppBar>
     </>
