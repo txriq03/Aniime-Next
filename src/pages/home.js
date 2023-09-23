@@ -15,7 +15,7 @@ const Home = () => {
   const { data: trendingData, status: trendingStatus } = useQuery(['trendingData'], () => api.getTrending());
   const { data: recentlyUpdatedData, status: recentlyUpdatedStatus } = useQuery(['recentlyUpdatedData'], () => api.getRecentlyUpdated())
   const { data: popularData, status: popularStatus } = useQuery(['popularData'], () => api.getPopular())
-  console.log(recentlyUpdatedData);
+  // console.log(recentlyUpdatedData);
 
   return (
     <>
