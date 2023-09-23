@@ -8,6 +8,8 @@ import {
   Drawer,
   Tooltip,
   Zoom,
+  Typography,
+  Link
 } from "@mui/material";
 import {
   Menu,
@@ -39,7 +41,6 @@ const Navbar = () => {
 
   const enterKeyHandler = (event) => {
     if (event.key == "Enter") {
-      console.log(`Enter key pressed`);
       router.push(`/search/${query}`);
       
       
@@ -190,6 +191,9 @@ const Navbar = () => {
               onClick={() => router.push("/home")}
             />
           </Box>
+          {/* <p>by <a style={{textDecoration: "none", color: '#BD284D', fontWeight: 'bold'}} href="https://github.com/txriq03">txriq03</a></p> */}
+          <Typography> by <Link href="https://github.com/txriq03" sx={{cursor: "pointer"}}> txriq03</Link></Typography>
+
           <OutlinedInput
             ref={searchInput}
             sx={{
